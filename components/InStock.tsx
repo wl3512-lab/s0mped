@@ -231,7 +231,7 @@ export default function InStock() {
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="font-body text-xs tracking-widest uppercase mb-3" style={{ color: "rgba(196,181,232,0.5)" }}>
+          <p className="font-body text-xs tracking-widest uppercase mb-3" style={{ color: "rgba(196,181,232,0.6)" }}>
             Tooth Gem Inventory
           </p>
           <h2
@@ -345,7 +345,7 @@ export default function InStock() {
                 {c.tip && (
                   <div
                     className="rounded-xl px-3.5 py-2.5 text-xs font-body font-light leading-relaxed"
-                    style={{ background: "rgba(196,181,232,0.07)", color: "rgba(196,181,232,0.55)", borderLeft: "2px solid rgba(196,181,232,0.25)" }}
+                    style={{ background: "rgba(196,181,232,0.08)", color: "rgba(196,181,232,0.6)", border: "1px solid rgba(196,181,232,0.2)", borderRadius: "0.75rem" }}
                   >
                     💡 {c.tip}
                   </div>

@@ -74,10 +74,10 @@ export default function Gallery() {
               {/* Iridescent catch-light on hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-500 iridescent" />
 
-              {/* Label bar */}
+              {/* Label bar — always visible on mobile, revealed on hover on desktop */}
               <div
-                className="absolute bottom-0 left-0 right-0 px-4 py-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-                style={{ background: "rgba(26, 15, 46, 0.85)", backdropFilter: "blur(8px)" }}
+                className="absolute bottom-0 left-0 right-0 px-4 py-3 sm:translate-y-full sm:group-hover:translate-y-0 transition-transform duration-300"
+                style={{ background: "rgba(26, 15, 46, 0.88)" }}
               >
                 <p className="font-body font-semibold text-xs" style={{ color: "#F2EEFF" }}>{item.label}</p>
                 <p className="font-body text-xs opacity-60" style={{ color: "#C4B5E8" }}>{item.note}</p>
@@ -108,7 +108,7 @@ export default function Gallery() {
             href="https://www.instagram.com/s0mped/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative rounded-2xl overflow-hidden aspect-square flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:shadow-xl glass"
+            className="group relative rounded-2xl overflow-hidden aspect-square flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:shadow-xl glass-solid"
             style={{ border: "1px solid rgba(196,181,232,0.35)" }}
           >
             <InstagramIcon />

@@ -50,7 +50,10 @@ export default function About() {
 
             <div className="grid grid-cols-2 gap-3 w-full">
               {stats.map((s) => (
-                <div key={s.label} className="rounded-2xl p-4 text-center glass">
+                <div
+                  key={s.label}
+                  className="rounded-2xl p-4 text-center glass-solid"
+                >
                   <div className="font-display font-semibold text-lg mb-0.5" style={{ color: "#3D2660" }}>
                     {s.value}
                   </div>

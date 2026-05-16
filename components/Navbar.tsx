@@ -19,7 +19,6 @@ export default function Navbar() {
     function update() {
       const y = window.scrollY;
       setScrolled(y > 20);
-      /* Switch to light text when scrolled past the dark hero */
       const heroH = window.innerHeight;
       setOnDark(y < heroH * 0.8);
     }
@@ -88,9 +87,11 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden flex flex-col gap-[5px] p-2"
+          className="md:hidden flex flex-col gap-[6px] p-3 min-h-[44px] min-w-[44px] items-center justify-center"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
           {[0, 1, 2].map((n) => (
             <span
@@ -109,7 +110,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden glass mt-3 mx-2 rounded-2xl p-6">
+        <div id="mobile-menu" className="md:hidden glass mt-3 mx-2 rounded-2xl p-6">
           <ul className="flex flex-col gap-5">
             {links.map((l) => (
               <li key={l.href}>

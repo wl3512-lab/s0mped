@@ -99,7 +99,7 @@ export default function Footer() {
           className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-body"
           style={{
             borderTop: "1px solid rgba(196, 181, 232, 0.12)",
-            color: "rgba(196, 181, 232, 0.35)",
+            color: "rgba(196, 181, 232, 0.55)",
           }}
         >
           <span>© {new Date().getFullYear()} s0mped. All rights reserved.</span>

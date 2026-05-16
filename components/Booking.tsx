@@ -63,7 +63,7 @@ export default function Booking() {
             {submitted ? (
               <div
                 className="rounded-3xl p-10 text-center"
-                style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.15)" }}
+                style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }}
               >
                 <div className="text-5xl mb-4 float" style={{ color: "#D4C6F0" }}>✧</div>
                 <h3
@@ -82,16 +82,16 @@ export default function Booking() {
                 className="rounded-3xl p-8 flex flex-col gap-5"
                 style={{
                   background: "rgba(255,255,255,0.08)",
-                  backdropFilter: "blur(20px)",
                   border: "1px solid rgba(255,255,255,0.12)",
                 }}
               >
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
+                    <label htmlFor="name" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
                       Name
                     </label>
                     <input
+                      id="name"
                       type="text"
                       name="name"
                       value={form.name}
@@ -107,10 +107,11 @@ export default function Booking() {
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
+                    <label htmlFor="email" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
                       Email
                     </label>
                     <input
+                      id="email"
                       type="email"
                       name="email"
                       value={form.email}
@@ -128,10 +129,11 @@ export default function Booking() {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
+                  <label htmlFor="instagram" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
                     Instagram Handle
                   </label>
                   <input
+                    id="instagram"
                     type="text"
                     name="instagram"
                     value={form.instagram}
@@ -147,10 +149,11 @@ export default function Booking() {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
+                  <label htmlFor="service" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
                     Service
                   </label>
                   <select
+                    id="service"
                     name="service"
                     value={form.service}
                     onChange={handleChange}
@@ -174,10 +177,11 @@ export default function Booking() {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
+                  <label htmlFor="message" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
                     Message (optional)
                   </label>
                   <textarea
+                    id="message"
                     name="message"
                     value={form.message}
                     onChange={handleChange}

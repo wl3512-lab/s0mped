@@ -8,12 +8,15 @@
   --accent-deep: #3D2660;
   --accent-mid: #9B8FD4;
   --accent-muted: #6B5A9A;
+  --accent-warm: #6B4A9A;
   --glass-surface: rgba(242, 238, 255, 0.55);
   --glass-border: rgba(196, 181, 232, 0.25);
   --text-on-light: #3D2660;
   --text-on-dark: #F2EEFF;
   --text-muted-light: #6B5A9A;
   --text-muted-dark: rgba(196, 181, 232, 0.65);
+  --text-sub-dark: rgba(196, 181, 232, 0.55);
+  --text-faint-dark: rgba(196, 181, 232, 0.4);
 }
 
 html {
@@ -37,11 +40,17 @@ body {
   font-family: var(--font-jost), sans-serif;
 }
 
-/* Glass panel */
+/* Glass panel — use only where backdrop blur is visible (over transparent content) */
 .glass {
   background: var(--glass-surface);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Solid tinted surface — use on opaque backgrounds where blur is invisible */
+.glass-solid {
+  background: rgba(242, 238, 255, 0.7);
   border: 1px solid var(--glass-border);
 }
 
@@ -53,33 +62,32 @@ body {
   border: 1px solid rgba(196, 181, 232, 0.12);
 }
 
-/* Float animation */
+/* Keyframes */
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  40% { transform: translateY(-9px) rotate(4deg); }
-  70% { transform: translateY(-4px) rotate(-3deg); }
+  40%       { transform: translateY(-9px) rotate(4deg); }
+  70%       { transform: translateY(-4px) rotate(-3deg); }
 }
 
-.float {
-  animation: float 5s ease-in-out infinite;
-}
-
-/* Twinkle */
 @keyframes twinkle {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(0.75); }
+  50%       { opacity: 0.3; transform: scale(0.75); }
 }
 
-.twinkle {
-  animation: twinkle 2.2s ease-in-out infinite;
-}
-
-/* Iridescent shimmer — used only on hover/gem highlight states */
 @keyframes iridescent-shift {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Animation classes — disabled when user prefers reduced motion */
+.float  { animation: none; }
+.twinkle { animation: none; }
 
 .iridescent {
   background: linear-gradient(
@@ -92,24 +100,33 @@ body {
     #C4B5E8 100%
   );
   background-size: 300% 300%;
-  animation: iridescent-shift 4s ease infinite;
-}
-
-/* Shimmer loading */
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  animation: none;
 }
 
 .shimmer {
   background: linear-gradient(90deg, #E8E0FF 0%, #F2EEFF 40%, #D4C6F0 60%, #E8E0FF 100%);
   background-size: 200% auto;
-  animation: shimmer 2.8s linear infinite;
+  animation: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .float   { animation: float 5s ease-in-out infinite; }
+  .twinkle { animation: twinkle 2.2s ease-in-out infinite; }
+  .iridescent { animation: iridescent-shift 4s ease infinite; }
+  .shimmer { animation: shimmer 2.8s linear infinite; }
 }
 
 /* Glow on dark */
 .glow {
   box-shadow: 0 0 28px rgba(196, 181, 232, 0.25), 0 0 56px rgba(196, 181, 232, 0.1);
+}
+
+/* Focus ring for keyboard navigation */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* Input reset */
