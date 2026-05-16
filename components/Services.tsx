@@ -16,11 +16,11 @@ const services = [
     featured: true,
   },
   {
-    icon: "♥ ✧",
-    name: "Example: Heart Set",
+    icon: "✧ ✦",
+    name: "Example: Star & Circle",
     price: "from $65",
     description:
-      "Heart charm + one crystal accent = 2 gems. Base $55 + $10. Mix and match any combo.",
+      "Star + round crystal = 2 gems. Base $55 + $10. A popular combo — mix any shapes you like.",
     featured: false,
   },
   {

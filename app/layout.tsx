@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Great_Vibes, Cormorant_Garamond, Jost } from "next/font/google";
+import { Pinyon_Script, Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 
-const greatVibes = Great_Vibes({
+const pinyonScript = Pinyon_Script({
   weight: "400",
-  variable: "--font-great-vibes",
+  variable: "--font-pinyon",
   subsets: ["latin"],
   display: "swap",
 });
@@ -44,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${greatVibes.variable} ${cormorant.variable} ${jost.variable}`}
+      className={`${pinyonScript.variable} ${cormorant.variable} ${jost.variable}`}
     >
       <body className="font-body min-h-screen">{children}</body>
     </html>

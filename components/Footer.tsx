@@ -17,12 +17,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Image
-              src="/sompedBLACK.png"
+              src="/somped-vector.svg"
               alt="s0mped"
               width={160}
               height={64}
               className="h-12 w-auto mb-3"
               style={{ filter: "brightness(0) invert(1)", opacity: 0.75 }}
+              unoptimized
             />
             <p
               className="font-body font-light text-sm leading-relaxed mb-5"

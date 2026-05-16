@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type ColorTag = "Clear" | "Aurora Borealis" | "Pink" | "Purple" | "Chrome";
 type Category = "All" | "Round" | "Shaped" | "Micro";
@@ -15,6 +16,7 @@ interface Crystal {
   description: string;
   features?: string[];
   tip?: string;
+  image: string;
 }
 
 const crystals: Crystal[] = [
@@ -24,6 +26,7 @@ const crystals: Crystal[] = [
     colors: ["Clear"],
     sizes: ["SS3", "SS5", "SS6", "SS7"],
     category: "Round",
+    image: "/gem-round-clear.jpg",
     description:
       "Premium Austrian-made round crystals with multiple facets that catch and reflect light for maximum sparkle. Lead-free glass with a specialized coating for enhanced shine and long-lasting wear.",
     features: [
@@ -38,6 +41,7 @@ const crystals: Crystal[] = [
     colors: ["Aurora Borealis"],
     sizes: ["SS3", "SS6"],
     category: "Round",
+    image: "/gem-round-ab.jpg",
     description:
       "The iconic Aurora Borealis coating creates a mesmerizing rainbow effect that shifts and sparkles with every movement — soft pinks, blues, greens, and golds all in one gem.",
     features: [
@@ -52,6 +56,7 @@ const crystals: Crystal[] = [
     colors: ["Purple"],
     sizes: ["SS5"],
     category: "Round",
+    image: "/gem-round-purple.jpg",
     description:
       "A rich, vibrant purple that creates a bold focal point on any tooth. Pairs beautifully with purple micro stars or AB crystals for a layered, dimensional look.",
     features: [
@@ -65,6 +70,7 @@ const crystals: Crystal[] = [
     type: "Swarovski",
     colors: ["Pink", "Purple", "Clear", "Aurora Borealis"],
     category: "Shaped",
+    image: "/gem-star.jpg",
     description:
       "Available in four finishes — each with its own personality. Mix and match or go for a single statement star.",
     features: [
@@ -79,6 +85,7 @@ const crystals: Crystal[] = [
     type: "Swarovski",
     colors: ["Clear"],
     category: "Shaped",
+    image: "/gem-fang.jpg",
     description:
       "Teardrop-shaped with a precision-shaved edge for a bold fang effect. Catches light beautifully and delivers an edgy, statement look. The pointed silhouette mimics a natural canine shape.",
     features: [
@@ -92,6 +99,7 @@ const crystals: Crystal[] = [
     type: "Swarovski",
     colors: ["Clear", "Aurora Borealis"],
     category: "Shaped",
+    image: "/gem-diamond-ab.jpg",
     description:
       "Geometric diamond-cut facets catch and reflect light from every angle — bold, refined, and modern. The AB version shifts through the entire color spectrum like the northern sky.",
     features: [
@@ -107,6 +115,7 @@ const crystals: Crystal[] = [
     colors: ["Clear", "Aurora Borealis"],
     category: "Shaped",
     promo: "$60 PROMO",
+    image: "/gem-navette-ab.jpg",
     description:
       "Elongated teardrop silhouette specifically chosen for butterfly designs — the navette shape mimics butterfly wings perfectly. Ideal for paired placements or multi-gem arrangements.",
     features: [
@@ -120,6 +129,7 @@ const crystals: Crystal[] = [
     type: "Swarovski",
     colors: ["Clear"],
     category: "Micro",
+    image: "/gem-diamond.jpg",
     description:
       "Tiny Swarovski diamonds ideal for building intricate designs and delicate butterfly patterns. Small size + brilliant sparkle = maximum detail in minimal space.",
     features: [
@@ -134,6 +144,7 @@ const crystals: Crystal[] = [
     colors: ["Chrome"],
     sizes: ["1.5×3mm"],
     category: "Micro",
+    image: "/gem-navette-clear.jpg",
     description:
       "Sleek, sharp CZ navettes with a unique diamond-cut silhouette and flat bottom. Give off a brilliant shimmer and bring a modern, clean edge to any gem layout.",
     features: [
@@ -147,6 +158,7 @@ const crystals: Crystal[] = [
     type: "Swarovski",
     colors: ["Clear"],
     category: "Micro",
+    image: "/gem-moon.jpg",
     description:
       "Delicate crescent-shaped crystals with an ultra-thin profile that sit flush on the tooth. Each micro moon is precision-shaved for comfortable, long-lasting wear.",
     features: [
@@ -260,70 +272,85 @@ export default function InStock() {
           {filtered.map((c, i) => (
             <div
               key={`${c.name}-${i}`}
-              className="rounded-3xl p-6 flex flex-col gap-4 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-0.5"
+              className="rounded-3xl flex flex-col overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:-translate-y-0.5"
               style={{
                 background: "rgba(255,255,255,0.05)",
                 border: "1px solid rgba(196,181,232,0.12)",
               }}
             >
-              {/* Top row: name + promo */}
-              <div className="flex items-start justify-between gap-2">
-                <h3 className="font-display font-semibold text-lg leading-tight" style={{ color: "#F2EEFF" }}>
-                  {c.name}
-                </h3>
+              {/* Product image */}
+              <div className="relative w-full h-44 overflow-hidden">
+                <Image
+                  src={c.image}
+                  alt={c.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(26,15,46,0.85) 100%)" }}
+                />
                 {c.promo && (
                   <span
-                    className="shrink-0 rounded-full px-2.5 py-0.5 text-xs font-body font-semibold"
-                    style={{ background: "rgba(201,164,76,0.2)", color: "#e8c96a", border: "1px solid rgba(201,164,76,0.3)" }}
+                    className="absolute top-3 right-3 rounded-full px-2.5 py-0.5 text-xs font-body font-semibold"
+                    style={{ background: "rgba(201,164,76,0.85)", color: "#1A0F2E", backdropFilter: "blur(4px)" }}
                   >
                     {c.promo}
                   </span>
                 )}
               </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5">
-                <TypeBadge type={c.type} />
-                {c.colors.map((col) => (
-                  <ColorPill key={col} color={col} />
-                ))}
-                {c.sizes && c.sizes.map((sz) => (
-                  <span
-                    key={sz}
-                    className="rounded-full px-2.5 py-0.5 text-xs font-body"
-                    style={{ background: "rgba(196,181,232,0.08)", color: "rgba(196,181,232,0.55)", border: "1px solid rgba(196,181,232,0.12)" }}
-                  >
-                    {sz}
-                  </span>
-                ))}
-              </div>
+              <div className="p-6 flex flex-col gap-4 flex-1">
+                {/* Top row: name */}
+                <h3 className="font-display font-semibold text-lg leading-tight" style={{ color: "#F2EEFF" }}>
+                  {c.name}
+                </h3>
 
-              {/* Description */}
-              <p className="font-body font-light text-sm leading-relaxed" style={{ color: "rgba(196,181,232,0.7)" }}>
-                {c.description}
-              </p>
-
-              {/* Features */}
-              {c.features && (
-                <ul className="flex flex-col gap-1.5">
-                  {c.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 font-body text-xs" style={{ color: "rgba(196,181,232,0.6)" }}>
-                      <span className="mt-0.5 shrink-0" style={{ color: "#9B8FD4" }}>✧</span>
-                      {f}
-                    </li>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5">
+                  <TypeBadge type={c.type} />
+                  {c.colors.map((col) => (
+                    <ColorPill key={col} color={col} />
                   ))}
-                </ul>
-              )}
-
-              {/* Tip */}
-              {c.tip && (
-                <div
-                  className="rounded-xl px-3.5 py-2.5 text-xs font-body font-light leading-relaxed"
-                  style={{ background: "rgba(196,181,232,0.07)", color: "rgba(196,181,232,0.55)", borderLeft: "2px solid rgba(196,181,232,0.25)" }}
-                >
-                  💡 {c.tip}
+                  {c.sizes && c.sizes.map((sz) => (
+                    <span
+                      key={sz}
+                      className="rounded-full px-2.5 py-0.5 text-xs font-body"
+                      style={{ background: "rgba(196,181,232,0.08)", color: "rgba(196,181,232,0.55)", border: "1px solid rgba(196,181,232,0.12)" }}
+                    >
+                      {sz}
+                    </span>
+                  ))}
                 </div>
-              )}
+
+                {/* Description */}
+                <p className="font-body font-light text-sm leading-relaxed" style={{ color: "rgba(196,181,232,0.7)" }}>
+                  {c.description}
+                </p>
+
+                {/* Features */}
+                {c.features && (
+                  <ul className="flex flex-col gap-1.5">
+                    {c.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 font-body text-xs" style={{ color: "rgba(196,181,232,0.6)" }}>
+                        <span className="mt-0.5 shrink-0" style={{ color: "#9B8FD4" }}>✧</span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {/* Tip */}
+                {c.tip && (
+                  <div
+                    className="rounded-xl px-3.5 py-2.5 text-xs font-body font-light leading-relaxed"
+                    style={{ background: "rgba(196,181,232,0.07)", color: "rgba(196,181,232,0.55)", borderLeft: "2px solid rgba(196,181,232,0.25)" }}
+                  >
+                    💡 {c.tip}
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>

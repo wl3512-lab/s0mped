@@ -54,13 +54,14 @@ export default function Hero() {
 
         {/* Logo */}
         <Image
-          src="/sompedBLACK.png"
+          src="/somped-vector.svg"
           alt="s0mped"
           width={520}
           height={180}
           className="w-72 sm:w-80 md:w-96 lg:w-[28rem] h-auto mb-7"
           style={{ filter: "brightness(0) invert(1)" }}
           priority
+          unoptimized
         />
 
         {/* Tagline */}

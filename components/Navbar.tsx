@@ -42,13 +42,14 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#home" className="flex items-center">
           <Image
-            src="/sompedBLACK.png"
+            src="/somped-vector.svg"
             alt="s0mped"
             width={120}
             height={48}
             className="h-10 w-auto transition-all duration-300"
             style={{ filter: onDark ? "brightness(0) invert(1)" : "none" }}
             priority
+            unoptimized
           />
         </a>
 

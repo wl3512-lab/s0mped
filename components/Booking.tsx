@@ -164,7 +164,7 @@ export default function Booking() {
                   >
                     <option value="" disabled>Select a service</option>
                     <option value="single">Single Crystal</option>
-                    <option value="heart-set">Heart Set</option>
+                    <option value="star-circle">Star &amp; Circle</option>
                     <option value="crystal-line">Crystal Line</option>
                     <option value="mock-braces">Mock Braces</option>
                     <option value="gold-charm">Gold Charm</option>
