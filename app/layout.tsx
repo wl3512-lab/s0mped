@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Pinyon_Script, Cormorant_Garamond, Jost } from "next/font/google";
+import LoadingScreen from "@/components/LoadingScreen";
 import "./globals.css";
 
 const pinyonScript = Pinyon_Script({
@@ -46,7 +47,10 @@ export default function RootLayout({
       lang="en"
       className={`${pinyonScript.variable} ${cormorant.variable} ${jost.variable}`}
     >
-      <body className="font-body min-h-screen">{children}</body>
+      <body className="font-body min-h-screen">
+        <LoadingScreen />
+        {children}
+      </body>
     </html>
   );
 }
