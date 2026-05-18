@@ -43,10 +43,21 @@ export default function About() {
               applied tooth gems in NYC. I only use lead-free Swarovski crystals and premium
               gold charms, bonded safely with dental-grade adhesive.
             </p>
-            <p className="font-body font-light leading-relaxed mb-10" style={{ color: "#6B5A9A", fontSize: "0.95rem" }}>
+            <p className="font-body font-light leading-relaxed mb-6" style={{ color: "#6B5A9A", fontSize: "0.95rem" }}>
               No drilling. No pain. Completely reversible. Follow me on Instagram for inspo,
               pricing, and to see satisfied clients ✧
             </p>
+
+            <a
+              href="https://www.instagram.com/lucyy.liuu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-body text-sm font-medium mb-10 transition-opacity hover:opacity-70"
+              style={{ color: "#9B8FD4" }}
+            >
+              <InstagramIcon />
+              @lucyy.liuu
+            </a>
 
             <div className="grid grid-cols-2 gap-3 w-full">
               {stats.map((s) => (
@@ -85,5 +96,15 @@ export default function About() {
         </div>
       </div>
     </section>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+    </svg>
   );
 }

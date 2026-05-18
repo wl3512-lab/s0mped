@@ -7,8 +7,8 @@ export default function LoadingScreen() {
   const [gone, setGone] = useState(false);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setHiding(true), 1600);
-    const t2 = setTimeout(() => setGone(true), 2350);
+    const t1 = setTimeout(() => setHiding(true), 1700);
+    const t2 = setTimeout(() => setGone(true), 2500);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
@@ -21,7 +21,8 @@ export default function LoadingScreen() {
       style={{
         background: "linear-gradient(160deg, #1A0F2E 0%, #2E1A52 55%, #3D2660 100%)",
         opacity: hiding ? 0 : 1,
-        transition: "opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1)",
+        transform: hiding ? "scale(0.97) translateY(-8px)" : "scale(1) translateY(0)",
+        transition: "opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
         pointerEvents: hiding ? "none" : "all",
       }}
     >
@@ -35,9 +36,29 @@ export default function LoadingScreen() {
         style={{ background: "radial-gradient(circle, #9B8FD4, transparent)" }}
       />
 
-      {/* Logo — shimmer sweeps through letterforms only */}
+      {/* Sparkles — appear in sequence to prelude the logo, then twinkle */}
+      <div className="flex items-center gap-5 mb-10">
+        {[
+          { appearDelay: 0.05, twinkleDelay: 0.42 },
+          { appearDelay: 0.18, twinkleDelay: 0.55 },
+          { appearDelay: 0.31, twinkleDelay: 0.68 },
+        ].map((t, i) => (
+          <span
+            key={i}
+            className="text-sm select-none"
+            style={{
+              color: "#C4B5E8",
+              animation: `sparkle-appear 0.38s cubic-bezier(0.22, 1, 0.36, 1) ${t.appearDelay}s backwards, twinkle 2.4s ease-in-out ${t.twinkleDelay}s infinite`,
+            }}
+          >
+            ✧
+          </span>
+        ))}
+      </div>
+
+      {/* Logo — crystallizes into focus */}
       <div
-        className="relative mb-10 loading-logo"
+        className="relative loading-logo"
         style={{ overflow: "hidden" }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -61,19 +82,6 @@ export default function LoadingScreen() {
             maskPosition: "center",
           } as React.CSSProperties}
         />
-      </div>
-
-      {/* Pulsing sparkles */}
-      <div className="flex items-center gap-5">
-        {[0, 0.35, 0.7].map((delay, i) => (
-          <span
-            key={i}
-            className="twinkle text-sm select-none"
-            style={{ color: "#C4B5E8", animationDelay: `${delay}s`, opacity: 0.7 }}
-          >
-            ✧
-          </span>
-        ))}
       </div>
     </div>
   );
