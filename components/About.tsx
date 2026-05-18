@@ -74,11 +74,10 @@ export default function About() {
               }}
             >
               <Image
-                src="/me.PNG"
+                src="/me.JPG"
                 alt="s0mped tooth gem artist"
                 fill
-                className="object-cover"
-                style={{ objectPosition: "65% 95%" }}
+                className="object-cover object-center"
                 sizes="(max-width: 768px) 288px, 320px"
               />
             </div>
