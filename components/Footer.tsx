@@ -106,7 +106,7 @@ export default function Footer() {
           <span className="font-script text-xl" style={{ color: "rgba(196, 181, 232, 0.2)" }}>
             ✧
           </span>
-          <span>wear your sparkle</span>
+          <span>luxury gems, applied with care</span>
         </div>
       </div>
     </footer>

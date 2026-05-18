@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 export default function LoadingScreen() {
   const [hiding, setHiding] = useState(false);
@@ -36,22 +35,32 @@ export default function LoadingScreen() {
         style={{ background: "radial-gradient(circle, #9B8FD4, transparent)" }}
       />
 
-      {/* Logo with shimmer sweep */}
+      {/* Logo — shimmer sweeps through letterforms only */}
       <div
         className="relative mb-10 loading-logo"
         style={{ overflow: "hidden" }}
       >
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/somped-vector.svg"
           alt=""
-          width={340}
-          height={118}
-          className="w-64 sm:w-80 md:w-[340px] h-auto"
+          className="w-64 sm:w-80 md:w-[340px] h-auto block"
           style={{ filter: "brightness(0) invert(1)" }}
-          unoptimized
-          priority
         />
-        <div className="loading-shine-sweep absolute inset-0 pointer-events-none" />
+        {/* Shimmer masked to letterform paths */}
+        <div
+          className="loading-shine-sweep absolute inset-0 pointer-events-none"
+          style={{
+            WebkitMaskImage: "url('/somped-vector.svg')",
+            WebkitMaskSize: "100% 100%",
+            WebkitMaskRepeat: "no-repeat",
+            WebkitMaskPosition: "center",
+            maskImage: "url('/somped-vector.svg')",
+            maskSize: "100% 100%",
+            maskRepeat: "no-repeat",
+            maskPosition: "center",
+          } as React.CSSProperties}
+        />
       </div>
 
       {/* Pulsing sparkles */}

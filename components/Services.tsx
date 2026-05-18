@@ -20,7 +20,7 @@ export default function Services() {
             Menu & Pricing
           </p>
           <h2
-            className="font-script mb-4"
+            className="reveal-heading font-script mb-4"
             style={{ fontSize: "clamp(2.8rem, 7vw, 5rem)", color: "#3D2660", lineHeight: 1 }}
           >
             services
@@ -103,6 +103,47 @@ export default function Services() {
               Every extra gem is a flat $10 — no matter the style, shape, or color. Stack as many as you want.
             </p>
           </div>
+        </div>
+
+        {/* Butterfly Promo */}
+        <div
+          className="rounded-3xl p-7 relative overflow-hidden flex flex-col sm:flex-row sm:items-center gap-5 mt-4 transition-all duration-300 hover:scale-[1.01]"
+          style={{
+            background: "linear-gradient(135deg, #2A1B4E 0%, #4A2D82 55%, #6B4A9A 100%)",
+            border: "1px solid rgba(196,181,232,0.2)",
+            boxShadow: "0 12px 40px rgba(61,38,96,0.3)",
+          }}
+        >
+          <div
+            className="absolute top-4 right-4 rounded-full px-3 py-1 text-xs font-body font-semibold"
+            style={{ background: "rgba(201,164,76,0.9)", color: "#1A0F2E" }}
+          >
+            $60 PROMO
+          </div>
+          <div className="text-3xl shrink-0 leading-none" style={{ color: "rgba(196,181,232,0.9)", letterSpacing: "-0.05em" }}>
+            ✧✦✦✧
+          </div>
+          <div className="flex-1">
+            <div className="flex items-baseline gap-3 mb-2">
+              <h3 className="font-display font-semibold text-xl leading-tight" style={{ color: "#F2EEFF" }}>
+                Butterfly Set
+              </h3>
+              <span className="font-body text-sm" style={{ color: "rgba(196,181,232,0.5)", textDecoration: "line-through" }}>$85</span>
+              <span className="font-body font-semibold text-xl" style={{ color: "#C4B5E8" }}>$60</span>
+            </div>
+            <p className="font-body font-light text-sm leading-relaxed" style={{ color: "rgba(242,238,255,0.7)" }}>
+              4 navette gems arranged into a butterfly formation — a signature look. Limited promo pricing, DM to book.
+            </p>
+          </div>
+          <a
+            href="https://www.instagram.com/s0mped/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 rounded-full px-5 py-2.5 font-body text-xs font-semibold tracking-wide transition-all hover:scale-105"
+            style={{ background: "rgba(196,181,232,0.18)", color: "#F2EEFF", border: "1px solid rgba(196,181,232,0.3)" }}
+          >
+            DM to Book →
+          </a>
         </div>
 
         {/* Divider */}

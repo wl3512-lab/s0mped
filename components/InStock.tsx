@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 type ColorTag = "Clear" | "Aurora Borealis" | "Pink" | "Purple" | "Chrome";
@@ -56,7 +56,7 @@ const crystals: Crystal[] = [
     colors: ["Purple"],
     sizes: ["SS5"],
     category: "Round",
-    image: "/gem-round-purple.jpg",
+    image: "/Viola.webp",
     description:
       "A rich, vibrant purple that creates a bold focal point on any tooth. Pairs beautifully with purple micro stars or AB crystals for a layered, dimensional look.",
     features: [
@@ -85,7 +85,7 @@ const crystals: Crystal[] = [
     type: "Swarovski",
     colors: ["Clear"],
     category: "Shaped",
-    image: "/gem-fang.jpg",
+    image: "/fang.webp",
     description:
       "Teardrop-shaped with a precision-shaved edge for a bold fang effect. Catches light beautifully and delivers an edgy, statement look. The pointed silhouette mimics a natural canine shape.",
     features: [
@@ -144,7 +144,7 @@ const crystals: Crystal[] = [
     colors: ["Chrome"],
     sizes: ["1.5×3mm"],
     category: "Micro",
-    image: "/gem-navette-clear.jpg",
+    image: "/gem-navette-micro.jpg",
     description:
       "Sleek, sharp CZ navettes with a unique diamond-cut silhouette and flat bottom. Give off a brilliant shimmer and bring a modern, clean edge to any gem layout.",
     features: [
@@ -156,7 +156,7 @@ const crystals: Crystal[] = [
   {
     name: "Micro Moon",
     type: "Swarovski",
-    colors: ["Clear"],
+    colors: ["Aurora Borealis"],
     category: "Micro",
     image: "/gem-moon.jpg",
     description:
@@ -185,11 +185,7 @@ function ColorPill({ color }: { color: ColorTag }) {
   return (
     <span
       className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-body font-medium"
-      style={{
-        background: s.bg,
-        color: s.text,
-        border: `1px solid ${s.border}`,
-      }}
+      style={{ background: s.bg, color: s.text, border: `1px solid ${s.border}` }}
     >
       {color}
     </span>
@@ -211,8 +207,126 @@ function TypeBadge({ type }: { type: Crystal["type"] }) {
   );
 }
 
+interface LightPos { x: number; y: number }
+
+function GemCard({ c, cardKey, deviceTilt }: { c: Crystal; cardKey: string; deviceTilt: LightPos }) {
+  const [mouseLight, setMouseLight] = useState<LightPos | null>(null);
+  const light = mouseLight ?? deviceTilt;
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMouseLight({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => setMouseLight(null), []);
+
+  return (
+    <div
+      className="reveal-card rounded-3xl flex flex-col overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:-translate-y-0.5"
+      style={{
+        background: "rgba(255,255,255,0.05)",
+        border: "1px solid rgba(196,181,232,0.12)",
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Product image with light-chasing overlay */}
+      <div className="relative w-full h-44 overflow-hidden">
+        <Image
+          src={c.image}
+          alt={c.name}
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+        <div
+          className="gem-light-overlay"
+          style={{
+            ["--lx" as string]: `${light.x}%`,
+            ["--ly" as string]: `${light.y}%`,
+            opacity: mouseLight ? 1 : 0.5,
+          } as React.CSSProperties}
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(26,15,46,0.85) 100%)" }}
+        />
+        {c.promo && (
+          <span
+            className="absolute top-3 right-3 rounded-full px-2.5 py-0.5 text-xs font-body font-semibold"
+            style={{ background: "rgba(201,164,76,0.9)", color: "#1A0F2E" }}
+          >
+            {c.promo}
+          </span>
+        )}
+      </div>
+
+      <div className="p-6 flex flex-col gap-4 flex-1">
+        <h3 className="font-display font-semibold text-lg leading-tight" style={{ color: "#F2EEFF" }}>
+          {c.name}
+        </h3>
+
+        <div className="flex flex-wrap gap-1.5">
+          <TypeBadge type={c.type} />
+          {c.colors.map((col) => <ColorPill key={col} color={col} />)}
+          {c.sizes?.map((sz) => (
+            <span
+              key={sz}
+              className="rounded-full px-2.5 py-0.5 text-xs font-body"
+              style={{ background: "rgba(196,181,232,0.08)", color: "rgba(196,181,232,0.55)", border: "1px solid rgba(196,181,232,0.12)" }}
+            >
+              {sz}
+            </span>
+          ))}
+        </div>
+
+        <p className="font-body font-light text-sm leading-relaxed" style={{ color: "rgba(196,181,232,0.7)" }}>
+          {c.description}
+        </p>
+
+        {c.features && (
+          <ul className="flex flex-col gap-1.5">
+            {c.features.map((f) => (
+              <li key={f} className="flex items-start gap-2 font-body text-xs" style={{ color: "rgba(196,181,232,0.6)" }}>
+                <span className="mt-0.5 shrink-0" style={{ color: "#9B8FD4" }}>✧</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {c.tip && (
+          <div
+            className="rounded-xl px-3.5 py-2.5 text-xs font-body font-light leading-relaxed"
+            style={{ background: "rgba(196,181,232,0.08)", color: "rgba(196,181,232,0.6)", border: "1px solid rgba(196,181,232,0.2)" }}
+          >
+            💡 {c.tip}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function InStock() {
   const [active, setActive] = useState<Category>("All");
+  const [deviceTilt, setDeviceTilt] = useState<LightPos>({ x: 50, y: 30 });
+
+  useEffect(() => {
+    function handleOrientation(e: DeviceOrientationEvent) {
+      const gamma = e.gamma ?? 0;
+      const beta = e.beta ?? 60;
+      setDeviceTilt({
+        x: Math.min(100, Math.max(0, 50 + (gamma / 25) * 35)),
+        y: Math.min(100, Math.max(0, 50 - ((beta - 60) / 25) * 30)),
+      });
+    }
+    window.addEventListener("deviceorientation", handleOrientation);
+    return () => window.removeEventListener("deviceorientation", handleOrientation);
+  }, []);
 
   const filtered = active === "All" ? crystals : crystals.filter((c) => c.category === active);
 
@@ -222,20 +336,18 @@ export default function InStock() {
       className="py-28 px-6 relative overflow-hidden"
       style={{ background: "#1A0F2E" }}
     >
-      {/* Bg glow */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-64 opacity-10 blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(ellipse, #C4B5E8, transparent)" }}
       />
 
       <div className="max-w-5xl mx-auto relative z-10">
-        {/* Header */}
         <div className="text-center mb-12">
           <p className="font-body text-xs tracking-widest uppercase mb-3" style={{ color: "rgba(196,181,232,0.6)" }}>
             Tooth Gem Inventory
           </p>
           <h2
-            className="font-script mb-4"
+            className="reveal-heading font-script mb-4"
             style={{ fontSize: "clamp(2.8rem, 7vw, 5rem)", color: "#F2EEFF", lineHeight: 1 }}
           >
             in stock
@@ -245,7 +357,6 @@ export default function InStock() {
           </p>
         </div>
 
-        {/* Category tabs */}
         <div className="flex items-center justify-center gap-2 mb-10 flex-wrap">
           {categories.map((cat) => (
             <button
@@ -255,11 +366,7 @@ export default function InStock() {
               style={
                 active === cat
                   ? { background: "linear-gradient(135deg, #C4B5E8, #9B8FD4)", color: "#1A0F2E" }
-                  : {
-                      background: "rgba(196,181,232,0.08)",
-                      color: "rgba(196,181,232,0.65)",
-                      border: "1px solid rgba(196,181,232,0.15)",
-                    }
+                  : { background: "rgba(196,181,232,0.08)", color: "rgba(196,181,232,0.65)", border: "1px solid rgba(196,181,232,0.15)" }
               }
             >
               {cat === "All" ? "All Gems" : cat}
@@ -267,95 +374,17 @@ export default function InStock() {
           ))}
         </div>
 
-        {/* Crystal cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((c, i) => (
-            <div
+            <GemCard
               key={`${c.name}-${i}`}
-              className="rounded-3xl flex flex-col overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:-translate-y-0.5"
-              style={{
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(196,181,232,0.12)",
-              }}
-            >
-              {/* Product image */}
-              <div className="relative w-full h-44 overflow-hidden">
-                <Image
-                  src={c.image}
-                  alt={c.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(26,15,46,0.85) 100%)" }}
-                />
-                {c.promo && (
-                  <span
-                    className="absolute top-3 right-3 rounded-full px-2.5 py-0.5 text-xs font-body font-semibold"
-                    style={{ background: "rgba(201,164,76,0.85)", color: "#1A0F2E", backdropFilter: "blur(4px)" }}
-                  >
-                    {c.promo}
-                  </span>
-                )}
-              </div>
-
-              <div className="p-6 flex flex-col gap-4 flex-1">
-                {/* Top row: name */}
-                <h3 className="font-display font-semibold text-lg leading-tight" style={{ color: "#F2EEFF" }}>
-                  {c.name}
-                </h3>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5">
-                  <TypeBadge type={c.type} />
-                  {c.colors.map((col) => (
-                    <ColorPill key={col} color={col} />
-                  ))}
-                  {c.sizes && c.sizes.map((sz) => (
-                    <span
-                      key={sz}
-                      className="rounded-full px-2.5 py-0.5 text-xs font-body"
-                      style={{ background: "rgba(196,181,232,0.08)", color: "rgba(196,181,232,0.55)", border: "1px solid rgba(196,181,232,0.12)" }}
-                    >
-                      {sz}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Description */}
-                <p className="font-body font-light text-sm leading-relaxed" style={{ color: "rgba(196,181,232,0.7)" }}>
-                  {c.description}
-                </p>
-
-                {/* Features */}
-                {c.features && (
-                  <ul className="flex flex-col gap-1.5">
-                    {c.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 font-body text-xs" style={{ color: "rgba(196,181,232,0.6)" }}>
-                        <span className="mt-0.5 shrink-0" style={{ color: "#9B8FD4" }}>✧</span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {/* Tip */}
-                {c.tip && (
-                  <div
-                    className="rounded-xl px-3.5 py-2.5 text-xs font-body font-light leading-relaxed"
-                    style={{ background: "rgba(196,181,232,0.08)", color: "rgba(196,181,232,0.6)", border: "1px solid rgba(196,181,232,0.2)", borderRadius: "0.75rem" }}
-                  >
-                    💡 {c.tip}
-                  </div>
-                )}
-              </div>
-            </div>
+              c={c}
+              cardKey={`${c.name}-${i}`}
+              deviceTilt={deviceTilt}
+            />
           ))}
         </div>
 
-        {/* Bottom note */}
         <div className="text-center mt-10">
           <p className="font-body text-xs" style={{ color: "rgba(196,181,232,0.4)" }}>
             Inventory updated regularly. DM{" "}

@@ -2,8 +2,9 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Gallery from "@/components/Gallery";
-import InStock from "@/components/InStock";
 import Services from "@/components/Services";
+import InStock from "@/components/InStock";
+import Aftercare from "@/components/Aftercare";
 import Booking from "@/components/Booking";
 import Footer from "@/components/Footer";
 
@@ -15,8 +16,9 @@ export default function Home() {
         <Hero />
         <About />
         <Gallery />
-        <InStock />
         <Services />
+        <InStock />
+        <Aftercare />
         <Booking />
       </main>
       <Footer />

@@ -26,7 +26,7 @@ export default function About() {
             About the Artist
           </p>
           <h2
-            className="font-script"
+            className="reveal-heading font-script"
             style={{ fontSize: "clamp(2.8rem, 7vw, 5rem)", color: "#3D2660", lineHeight: 1.1 }}
           >
             a gem for every smile
@@ -77,7 +77,8 @@ export default function About() {
                 src="/me.PNG"
                 alt="s0mped tooth gem artist"
                 fill
-                className="object-cover object-top"
+                className="object-cover"
+                style={{ objectPosition: "65% 95%" }}
                 sizes="(max-width: 768px) 288px, 320px"
               />
             </div>

@@ -64,14 +64,6 @@ export default function Hero() {
           unoptimized
         />
 
-        {/* Tagline */}
-        <p
-          className="font-display italic font-light mb-5"
-          style={{ fontSize: "clamp(1rem, 2.5vw, 1.45rem)", color: "#C4B5E8", letterSpacing: "0.07em" }}
-        >
-          wear your sparkle
-        </p>
-
         {/* Body */}
         <p
           className="font-body font-light max-w-md mx-auto mb-12 leading-relaxed"

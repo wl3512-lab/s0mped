@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Pinyon_Script, Cormorant_Garamond, Jost } from "next/font/google";
 import LoadingScreen from "@/components/LoadingScreen";
+import CursorTrail from "@/components/CursorTrail";
+import MobileBookingPill from "@/components/MobileBookingPill";
 import "./globals.css";
 
 const pinyonScript = Pinyon_Script({
@@ -49,6 +51,8 @@ export default function RootLayout({
     >
       <body className="font-body min-h-screen">
         <LoadingScreen />
+        <CursorTrail />
+        <MobileBookingPill />
         {children}
       </body>
     </html>

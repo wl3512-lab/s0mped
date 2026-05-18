@@ -19,6 +19,19 @@
   --text-faint-dark: rgba(196, 181, 232, 0.4);
 }
 
+/* Animatable custom properties for gem light effect */
+@property --lx {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --ly {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 30%;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -62,44 +75,108 @@ body {
   border: 1px solid rgba(196, 181, 232, 0.12);
 }
 
-/* Keyframes */
-/* Loading screen shine sweep — one-shot, not looping */
-@keyframes loading-shine-sweep {
-  0%   { transform: translateX(-120%); opacity: 0; }
-  15%  { opacity: 1; }
-  85%  { opacity: 1; }
-  100% { transform: translateX(220%); opacity: 0; }
-}
-
-.loading-shine-sweep {
-  background: linear-gradient(
-    105deg,
-    transparent 35%,
-    rgba(196, 181, 232, 0.55) 50%,
+/* Gem light-chasing overlay */
+.gem-light-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: radial-gradient(
+    ellipse 65% 52% at var(--lx) var(--ly),
+    rgba(255, 255, 255, 0.3),
+    rgba(196, 181, 232, 0.14) 38%,
     transparent 65%
   );
-  width: 100%;
-  animation: loading-shine-sweep 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards;
-  transform: translateX(-120%);
+  transition: --lx 0.14s ease-out, --ly 0.14s ease-out, opacity 0.25s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .loading-shine-sweep { animation: none; opacity: 0; }
+  .gem-light-overlay { display: none; }
 }
 
-/* Logo fade-in */
-.loading-logo {
-  animation: loading-logo-in 0.5s ease-out both;
+/* ─── Scroll-driven reveal animations ─── */
+
+/* Heading crystallize: applies only in supporting browsers */
+@keyframes heading-crystallize {
+  from {
+    opacity: 0;
+    transform: scale(1.09) translateY(14px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
 }
 
-@keyframes loading-logo-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* Card rise: for gem cards */
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .loading-logo { animation: none; }
+/* Photo wipe: gallery images */
+@keyframes photo-wipe-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
+
+/* All reveal classes: static by default (SSR, Firefox, reduced-motion) */
+.reveal-heading,
+.reveal-card,
+.reveal-photo {
+  animation: none;
+}
+
+/* Scroll-driven progressively enhanced */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal-heading {
+      animation: heading-crystallize linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+
+    .reveal-card {
+      animation: card-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+
+    /* Cascade: even cards start slightly later */
+    .reveal-card:nth-child(even) {
+      animation-range-start: entry 6%;
+    }
+    .reveal-card:nth-child(3n) {
+      animation-range-start: entry 12%;
+    }
+
+    .reveal-photo {
+      animation: photo-wipe-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 65%;
+    }
+
+    .reveal-photo:nth-child(even) {
+      animation-range-start: entry 8%;
+    }
+  }
+}
+
+/* ─── Keyframes (ambient motion) ─── */
 
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -124,7 +201,7 @@ body {
 }
 
 /* Animation classes — disabled when user prefers reduced motion */
-.float  { animation: none; }
+.float   { animation: none; }
 .twinkle { animation: none; }
 
 .iridescent {
@@ -154,12 +231,64 @@ body {
   .shimmer { animation: shimmer 2.8s linear infinite; }
 }
 
-/* Glow on dark */
+/* ─── Loading screen ─── */
+
+@keyframes loading-shine-sweep {
+  0%   { transform: translateX(-120%); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateX(220%); opacity: 0; }
+}
+
+.loading-shine-sweep {
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(196, 181, 232, 0.55) 50%,
+    transparent 65%
+  );
+  width: 100%;
+  animation: loading-shine-sweep 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards;
+  transform: translateX(-120%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-shine-sweep { animation: none; opacity: 0; }
+}
+
+.loading-logo {
+  animation: loading-logo-in 0.5s ease-out both;
+}
+
+@keyframes loading-logo-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-logo { animation: none; }
+}
+
+/* ─── Mobile booking pill ─── */
+
+@keyframes pill-pulse {
+  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(196, 181, 232, 0.5); }
+  50%  { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(196, 181, 232, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(196, 181, 232, 0); }
+}
+
+.pill-pulse-once {
+  animation: pill-pulse 0.55s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+}
+
+/* ─── Glow ─── */
+
 .glow {
   box-shadow: 0 0 28px rgba(196, 181, 232, 0.25), 0 0 56px rgba(196, 181, 232, 0.1);
 }
 
-/* Focus ring for keyboard navigation */
+/* ─── Focus ring ─── */
+
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--accent-primary);
@@ -167,7 +296,8 @@ button:focus-visible {
   border-radius: 4px;
 }
 
-/* Input reset */
+/* ─── Form elements ─── */
+
 input, textarea, select {
   -webkit-appearance: none;
   appearance: none;
