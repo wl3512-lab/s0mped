@@ -1,0 +1,79 @@
+{
+  "register": "brand",
+  "palette": "committed",
+  "theme": "dual",
+  "creative_north_star": "fine jewelry in motion — crystals caught in candlelight, intimate and precise",
+
+  "colors": {
+    "bg_light": "#F2EEFF",
+    "bg_dark": "#1A0F2E",
+    "accent_primary": "#C4B5E8",
+    "accent_deep": "#3D2660",
+    "accent_mid": "#9B8FD4",
+    "accent_muted": "#6B5A9A",
+    "accent_warm": "#6B4A9A",
+    "promo_gold": "rgba(201,164,76,0.9)"
+  },
+
+  "typography": {
+    "fonts": {
+      "script": { "family": "Pinyon Script", "variable": "--font-pinyon", "weights": ["400"], "class": "font-script" },
+      "display": { "family": "Cormorant Garamond", "variable": "--font-cormorant", "weights": ["300","400","500","600"], "styles": ["normal","italic"], "class": "font-display" },
+      "body": { "family": "Jost", "variable": "--font-jost", "weights": ["300","400","500","600"], "class": "font-body" }
+    },
+    "scale": {
+      "section_heading": "clamp(2.8rem, 7vw, 5rem)",
+      "card_title_lg": "1.25rem",
+      "card_title_sm": "1.125rem",
+      "body": "0.92rem–0.95rem",
+      "eyebrow": "0.75rem",
+      "micro": "0.75rem",
+      "price_callout": "1.5rem"
+    }
+  },
+
+  "spacing": {
+    "section_py": "7rem",
+    "section_px": "1.5rem",
+    "max_width": "64rem",
+    "card_padding_lg": "1.75rem",
+    "card_padding_sm": "1.25rem–1.5rem",
+    "card_gap": "1rem–1.25rem"
+  },
+
+  "radii": {
+    "pill": "9999px",
+    "card_lg": "24px",
+    "card_sm": "16px",
+    "input": "12px"
+  },
+
+  "shadows": {
+    "subtle": "0 2px 16px rgba(61,38,96,0.06)",
+    "lifted": "0 8px 40px rgba(61,38,96,0.2)",
+    "deep": "0 12px 40px rgba(61,38,96,0.35)",
+    "glow": "0 0 28px rgba(196,181,232,0.25), 0 0 56px rgba(196,181,232,0.1)"
+  },
+
+  "glass": {
+    "light": { "background": "rgba(242,238,255,0.55)", "blur": "16px", "border": "1px solid rgba(196,181,232,0.25)" },
+    "solid": { "background": "rgba(242,238,255,0.7)", "blur": "none", "border": "1px solid rgba(196,181,232,0.25)" },
+    "dark": { "background": "rgba(255,255,255,0.06)", "blur": "16px", "border": "1px solid rgba(196,181,232,0.12)" }
+  },
+
+  "motion": {
+    "easing_expo": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "easing_standard": "cubic-bezier(0.4, 0, 0.2, 1)",
+    "hover_scale_card": "scale(1.02) translateY(-2px)",
+    "hover_scale_cta": "scale(1.05)",
+    "scroll_driven_support": "@supports (animation-timeline: view())",
+    "reduced_motion": "all ambient and scroll animations disabled"
+  },
+
+  "ornament": {
+    "primary_sparkle": "✧",
+    "secondary_sparkle": "✦",
+    "premium": "⬡",
+    "directional": "→"
+  }
+}

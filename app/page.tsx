@@ -17,8 +17,8 @@ export default function Home() {
         <About />
         <Gallery />
         <Services />
-        <InStock />
         <Aftercare />
+        <InStock />
         <Booking />
       </main>
       <Footer />

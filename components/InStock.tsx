@@ -144,7 +144,7 @@ const crystals: Crystal[] = [
     colors: ["Chrome"],
     sizes: ["1.5×3mm"],
     category: "Micro",
-    image: "/gem-navette-micro.jpg",
+    image: "/micro navette photo.PNG",
     description:
       "Sleek, sharp CZ navettes with a unique diamond-cut silhouette and flat bottom. Give off a brilliant shimmer and bring a modern, clean edge to any gem layout.",
     features: [

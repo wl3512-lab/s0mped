@@ -32,6 +32,11 @@ export const metadata: Metadata = {
   description:
     "Luxury tooth gems applied with care. Custom Swarovski crystal and gold tooth jewelry by @s0mped.",
   keywords: ["tooth gems", "tooth jewelry", "Swarovski", "dental gems", "s0mped"],
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
     title: "s0mped | Tooth Gem Artist",
     description: "Luxury tooth gems applied with care. Book your appointment.",

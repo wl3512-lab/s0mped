@@ -77,7 +77,7 @@ export default function Gallery() {
               className="reveal-heading font-script mb-4"
               style={{ fontSize: "clamp(2.8rem, 10vw, 4rem)", color: "#3D2660", lineHeight: 1 }}
             >
-              sparkle gallery
+              work
             </h2>
             <p className="font-body font-light text-sm mb-6" style={{ color: "#6B5A9A" }}>
               Real clients. No filters. Full portfolio on Instagram.
@@ -116,7 +116,7 @@ export default function Gallery() {
               className="reveal-heading font-script mb-5"
               style={{ fontSize: "clamp(2rem, 4.5vw, 3.8rem)", color: "#3D2660", lineHeight: 1 }}
             >
-              sparkle gallery
+              work
             </h2>
             <p
               className="font-body font-light text-sm leading-relaxed mb-8"
