@@ -44,7 +44,7 @@ export default function Booking() {
           </p>
           <h2
             className="reveal-heading font-script mb-4"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)", color: "#F2EEFF", lineHeight: 1 }}
+            style={{ fontSize: "clamp(3.5rem, 9vw, 6.5rem)", color: "#F2EEFF", lineHeight: 1 }}
           >
             get your gem
           </h2>

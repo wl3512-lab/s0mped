@@ -21,32 +21,32 @@ export default function Services() {
           </p>
           <h2
             className="reveal-heading font-script mb-4"
-            style={{ fontSize: "clamp(2.8rem, 7vw, 5rem)", color: "#3D2660", lineHeight: 1 }}
+            style={{ fontSize: "clamp(3.5rem, 9vw, 6.5rem)", color: "#3D2660", lineHeight: 1 }}
           >
             services
           </h2>
 
           {/* Pricing formula callout */}
           <div
-            className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-5 rounded-2xl px-7 py-4 mt-2"
+            className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-8 rounded-2xl px-8 py-7 mt-2"
             style={{
               background: "linear-gradient(135deg, #3D2660, #6B4A9A)",
               boxShadow: "0 8px 32px rgba(61,38,96,0.25)",
             }}
           >
             <div className="text-center">
-              <span className="font-body font-semibold text-2xl" style={{ color: "#F2EEFF" }}>$55</span>
-              <p className="font-body text-xs mt-0.5" style={{ color: "rgba(196,181,232,0.75)" }}>base price</p>
+              <span className="font-display font-light" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", color: "#F2EEFF", lineHeight: 1 }}>$55</span>
+              <p className="font-body text-[10px] mt-2 tracking-widest uppercase" style={{ color: "rgba(196,181,232,0.6)" }}>base price</p>
             </div>
-            <span className="font-body text-xl" style={{ color: "rgba(196,181,232,0.4)" }}>+</span>
+            <span className="font-display font-light text-3xl" style={{ color: "rgba(196,181,232,0.3)" }}>+</span>
             <div className="text-center">
-              <span className="font-body font-semibold text-2xl" style={{ color: "#F2EEFF" }}>$10</span>
-              <p className="font-body text-xs mt-0.5" style={{ color: "rgba(196,181,232,0.75)" }}>per extra gem</p>
+              <span className="font-display font-light" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", color: "#F2EEFF", lineHeight: 1 }}>$10</span>
+              <p className="font-body text-[10px] mt-2 tracking-widest uppercase" style={{ color: "rgba(196,181,232,0.6)" }}>per extra gem</p>
             </div>
-            <span className="font-body text-xl hidden sm:block" style={{ color: "rgba(196,181,232,0.4)" }}>=</span>
+            <span className="font-display font-light text-3xl hidden sm:block" style={{ color: "rgba(196,181,232,0.3)" }}>=</span>
             <div className="text-center hidden sm:block">
-              <span className="font-body font-semibold text-base" style={{ color: "#C4B5E8" }}>any style,</span>
-              <p className="font-body text-xs mt-0.5" style={{ color: "rgba(196,181,232,0.75)" }}>flat rate always</p>
+              <span className="font-display font-light text-2xl" style={{ color: "#C4B5E8", lineHeight: 1 }}>any style</span>
+              <p className="font-body text-[10px] mt-2 tracking-widest uppercase" style={{ color: "rgba(196,181,232,0.6)" }}>flat rate always</p>
             </div>
           </div>
         </div>

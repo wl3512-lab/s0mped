@@ -76,7 +76,7 @@ export default function Gallery() {
             </p>
             <h2
               className="reveal-heading font-script mb-4"
-              style={{ fontSize: "clamp(2.8rem, 10vw, 4rem)", color: "#3D2660", lineHeight: 1 }}
+              style={{ fontSize: "clamp(3.5rem, 12vw, 6rem)", color: "#3D2660", lineHeight: 1 }}
             >
               work
             </h2>
@@ -115,7 +115,7 @@ export default function Gallery() {
             </p>
             <h2
               className="reveal-heading font-script mb-5"
-              style={{ fontSize: "clamp(2rem, 4.5vw, 3.8rem)", color: "#3D2660", lineHeight: 1 }}
+              style={{ fontSize: "clamp(3.5rem, 8vw, 7rem)", color: "#3D2660", lineHeight: 1 }}
             >
               work
             </h2>

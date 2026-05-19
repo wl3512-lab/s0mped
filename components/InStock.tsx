@@ -156,7 +156,7 @@ const crystals: Crystal[] = [
   {
     name: "Micro Moon",
     type: "Swarovski",
-    colors: ["Aurora Borealis"],
+    colors: ["Clear"],
     category: "Micro",
     image: "/gem-moon.jpg",
     description:
@@ -348,7 +348,7 @@ export default function InStock() {
           </p>
           <h2
             className="reveal-heading font-script mb-4"
-            style={{ fontSize: "clamp(2.8rem, 7vw, 5rem)", color: "#F2EEFF", lineHeight: 1 }}
+            style={{ fontSize: "clamp(3.5rem, 9vw, 6.5rem)", color: "#F2EEFF", lineHeight: 1 }}
           >
             in stock
           </h2>

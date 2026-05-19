@@ -27,7 +27,7 @@ export default function About() {
           </p>
           <h2
             className="reveal-heading font-script"
-            style={{ fontSize: "clamp(2.8rem, 7vw, 5rem)", color: "#3D2660", lineHeight: 1.1 }}
+            style={{ fontSize: "clamp(3.5rem, 10vw, 7rem)", color: "#3D2660", lineHeight: 1.05 }}
           >
             a gem for every smile
           </h2>
@@ -59,16 +59,16 @@ export default function About() {
               @lucyy.liuu
             </a>
 
-            <div className="grid grid-cols-2 gap-3 w-full">
+            <div
+              className="grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4 w-full pt-6"
+              style={{ borderTop: "1px solid rgba(196,181,232,0.25)" }}
+            >
               {stats.map((s) => (
-                <div
-                  key={s.label}
-                  className="rounded-2xl p-4 text-center glass-solid"
-                >
-                  <div className="font-display font-semibold text-lg mb-0.5" style={{ color: "#3D2660" }}>
+                <div key={s.label}>
+                  <div className="font-display font-light text-2xl mb-1" style={{ color: "#3D2660" }}>
                     {s.value}
                   </div>
-                  <div className="font-body text-xs tracking-widest uppercase" style={{ color: "#9B8FD4" }}>
+                  <div className="font-body text-[10px] tracking-widest uppercase" style={{ color: "#9B8FD4" }}>
                     {s.label}
                   </div>
                 </div>
