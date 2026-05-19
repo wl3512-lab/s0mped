@@ -375,6 +375,22 @@ export default function InStock() {
           ))}
         </div>
 
+        {/* SS size explainer */}
+        <div
+          className="rounded-2xl px-5 py-4 mb-8 flex flex-col sm:flex-row sm:items-center gap-3"
+          style={{
+            background: "rgba(196,181,232,0.06)",
+            border: "1px solid rgba(196,181,232,0.12)",
+          }}
+        >
+          <span className="shrink-0 font-body text-xs font-semibold tracking-widest uppercase" style={{ color: "#9B8FD4" }}>
+            What is SS?
+          </span>
+          <p className="font-body font-light text-xs leading-relaxed" style={{ color: "rgba(196,181,232,0.6)" }}>
+            SS (stone size) is Swarovski&apos;s sizing system. The higher the number, the larger the gem. SS3 is tiny and delicate; SS7 is bold and eye-catching. Not sure which size suits you? I bring tooth models to every appointment so you can see each size on a real tooth before committing.
+          </p>
+        </div>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((c, i) => (
             <GemCard
