@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main style={{ paddingTop: "80px" }}>
+      <main className="pt-24">
         <About />
       </main>
       <Footer />

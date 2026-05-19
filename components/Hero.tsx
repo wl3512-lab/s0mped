@@ -84,7 +84,7 @@ export default function Hero() {
               color: "#1A0F2E",
             }}
           >
-            Book Appointment ✧
+            Book Now ✧
           </a>
           <a
             href="https://www.instagram.com/s0mped/"

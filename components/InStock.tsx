@@ -405,13 +405,14 @@ export default function InStock() {
         <div className="text-center mt-12 flex flex-col items-center gap-4">
           <a
             href="#book"
-            className="rounded-full px-8 py-3.5 font-body font-semibold text-sm tracking-wide transition-all duration-200 hover:scale-105"
+            className="rounded-full px-8 py-3.5 font-body font-medium text-sm tracking-wide transition-all duration-200 hover:scale-105"
             style={{
-              background: "linear-gradient(135deg, #C4B5E8, #9B8FD4)",
-              color: "#1A0F2E",
+              background: "rgba(196,181,232,0.08)",
+              border: "1px solid rgba(196,181,232,0.3)",
+              color: "#C4B5E8",
             }}
           >
-            Book Your Gems ✧
+            Book Now ✧
           </a>
           <p className="font-body text-xs" style={{ color: "rgba(196,181,232,0.4)" }}>
             Inventory updated regularly. DM{" "}

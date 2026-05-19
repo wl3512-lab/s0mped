@@ -226,18 +226,31 @@ export default function Services() {
               Premium solid 18k gold or white gold charms. Preorder required: DM @s0mped to reserve yours before booking.
             </p>
           </div>
-          <a
-            href="https://www.instagram.com/s0mped/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 rounded-full px-5 py-2.5 font-body text-xs font-semibold tracking-wide transition-all hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg, #3D2660, #6B4A9A)",
-              color: "#F2EEFF",
-            }}
-          >
-            Preorder →
-          </a>
+          <div className="shrink-0 flex flex-col gap-2 items-center sm:items-end">
+            <a
+              href="https://www.instagram.com/s0mped/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full px-5 py-2.5 font-body text-xs font-semibold tracking-wide transition-all hover:scale-105 w-full text-center"
+              style={{
+                background: "linear-gradient(135deg, #3D2660, #6B4A9A)",
+                color: "#F2EEFF",
+              }}
+            >
+              DM to Preorder →
+            </a>
+            <a
+              href="#book"
+              className="rounded-full px-5 py-2 font-body text-xs font-medium tracking-wide transition-all hover:scale-105 w-full text-center"
+              style={{
+                background: "transparent",
+                border: "1px solid rgba(196,181,232,0.35)",
+                color: "#9B8FD4",
+              }}
+            >
+              Or use the form →
+            </a>
+          </div>
         </div>
 
         {/* Footer notes */}

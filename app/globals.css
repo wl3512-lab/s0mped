@@ -284,6 +284,25 @@ body {
   .loading-shine-sweep { animation: none; opacity: 0; }
 }
 
+/* Loading screen sparkles — gated so reduced-motion users see them static */
+@media (prefers-reduced-motion: no-preference) {
+  .loading-sparkle-1 {
+    animation:
+      sparkle-appear 0.38s cubic-bezier(0.22, 1, 0.36, 1) 0.05s backwards,
+      twinkle 2.4s ease-in-out 0.42s infinite;
+  }
+  .loading-sparkle-2 {
+    animation:
+      sparkle-appear 0.38s cubic-bezier(0.22, 1, 0.36, 1) 0.18s backwards,
+      twinkle 2.4s ease-in-out 0.55s infinite;
+  }
+  .loading-sparkle-3 {
+    animation:
+      sparkle-appear 0.38s cubic-bezier(0.22, 1, 0.36, 1) 0.31s backwards,
+      twinkle 2.4s ease-in-out 0.68s infinite;
+  }
+}
+
 /* Sparkle entrance — stagger-delayed before logo, then twinkle takes over */
 @keyframes sparkle-appear {
   from {

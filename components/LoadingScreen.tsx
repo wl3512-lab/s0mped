@@ -38,18 +38,11 @@ export default function LoadingScreen() {
 
       {/* Sparkles — appear in sequence to prelude the logo, then twinkle */}
       <div className="flex items-center gap-5 mb-10">
-        {[
-          { appearDelay: 0.05, twinkleDelay: 0.42 },
-          { appearDelay: 0.18, twinkleDelay: 0.55 },
-          { appearDelay: 0.31, twinkleDelay: 0.68 },
-        ].map((t, i) => (
+        {(["loading-sparkle-1", "loading-sparkle-2", "loading-sparkle-3"] as const).map((cls, i) => (
           <span
             key={i}
-            className="text-sm select-none"
-            style={{
-              color: "#C4B5E8",
-              animation: `sparkle-appear 0.38s cubic-bezier(0.22, 1, 0.36, 1) ${t.appearDelay}s backwards, twinkle 2.4s ease-in-out ${t.twinkleDelay}s infinite`,
-            }}
+            className={`text-sm select-none ${cls}`}
+            style={{ color: "#C4B5E8" }}
           >
             ✧
           </span>

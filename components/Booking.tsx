@@ -84,7 +84,7 @@ export default function Booking() {
           <div className="md:col-span-3">
             {submitted ? (
               <div
-                className="rounded-3xl p-10 text-center"
+                className="rounded-3xl p-10 text-center flex flex-col items-center"
                 style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }}
               >
                 <div aria-hidden="true" className="text-5xl mb-4 float" style={{ color: "#D4C6F0" }}>✧</div>
@@ -94,9 +94,23 @@ export default function Booking() {
                 >
                   you&apos;re on the list!
                 </h3>
-                <p className="font-body font-light" style={{ color: "rgba(212, 198, 240, 0.85)" }}>
-                  I&apos;ll reach out via Instagram or email within 24 hours to confirm your appointment.
+                <p className="font-body font-light mb-8" style={{ color: "rgba(212, 198, 240, 0.85)" }}>
+                  I&apos;ll DM you on Instagram or reply by email within 24 hours to confirm.
                 </p>
+                <a
+                  href="https://www.instagram.com/s0mped/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 rounded-full px-6 py-3 font-body text-sm font-medium transition-all hover:scale-105"
+                  style={{
+                    background: "rgba(196,181,232,0.15)",
+                    border: "1px solid rgba(196,181,232,0.3)",
+                    color: "#C4B5E8",
+                  }}
+                >
+                  <InstagramIcon />
+                  Follow @s0mped for inspo
+                </a>
               </div>
             ) : (
               <form
@@ -241,7 +255,7 @@ export default function Booking() {
                     color: "#4a3065",
                   }}
                 >
-                  {loading ? "Sending…" : "Request Appointment ✧"}
+                  {loading ? "Sending…" : "Book Now ✧"}
                 </button>
               </form>
             )}
