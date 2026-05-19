@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // Create a free form at formspree.io and paste your endpoint here:
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjgzgbpg";
 
 export default function Booking() {
   const [submitted, setSubmitted] = useState(false);
