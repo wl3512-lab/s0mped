@@ -118,7 +118,7 @@ export default function Services() {
             className="absolute top-4 right-4 rounded-full px-3 py-1 text-xs font-body font-semibold"
             style={{ background: "rgba(201,164,76,0.9)", color: "#1A0F2E" }}
           >
-            $60 PROMO
+            $70 PROMO
           </div>
           <div className="text-3xl shrink-0 leading-none" style={{ color: "rgba(196,181,232,0.9)", letterSpacing: "-0.05em" }}>
             ✧✦✦✧
@@ -129,7 +129,7 @@ export default function Services() {
                 Butterfly Set
               </h3>
               <span className="font-body text-sm" style={{ color: "rgba(196,181,232,0.5)", textDecoration: "line-through" }}>$85</span>
-              <span className="font-body font-semibold text-xl" style={{ color: "#C4B5E8" }}>$60</span>
+              <span className="font-body font-semibold text-xl" style={{ color: "#C4B5E8" }}>$70</span>
             </div>
             <p className="font-body font-light text-sm leading-relaxed" style={{ color: "rgba(242,238,255,0.7)" }}>
               4 navette gems arranged into a butterfly formation, a signature look. Limited promo pricing, DM to book.

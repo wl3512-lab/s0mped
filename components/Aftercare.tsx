@@ -8,6 +8,10 @@ const faqs = [
     a: "With proper care, gems last 3–12+ months. Avoid hard biting and acidic drinks to maximize longevity. Most clients come back for a refresh after 6–9 months.",
   },
   {
+    q: "How are the gems bonded?",
+    a: "I use a professional 2-in-1 self-etching primer and adhesive (combines both steps into one applicator) followed by Tetric EvoFlow, the same dental-grade light-cure composite used by orthodontists for braces. It&apos;s long-lasting, wear-resistant, and fully safe for enamel.",
+  },
+  {
     q: "Does the application hurt?",
     a: "Not at all. Completely painless. No drilling, no needles, no damage to your enamel. The gem is bonded with dental-grade adhesive, the same used by orthodontists.",
   },
