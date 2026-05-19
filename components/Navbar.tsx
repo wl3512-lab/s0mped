@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 const links = [
@@ -15,6 +16,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [onDark, setOnDark] = useState(true);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     function update() {
@@ -40,7 +43,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="flex items-center">
+        <a href="/" className="flex items-center">
           <Image
             src="/somped-vector.svg"
             alt="s0mped"
@@ -55,17 +58,20 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <ul className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className="font-body text-xs tracking-widest uppercase transition-opacity duration-200 hover:opacity-60"
-                style={{ color: textColor }}
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
+          {links.map((l) => {
+            const href = !isHome && l.href.startsWith("#") ? `/${l.href}` : l.href;
+            return (
+              <li key={l.href}>
+                <a
+                  href={href}
+                  className="font-body text-xs tracking-widest uppercase transition-opacity duration-200 hover:opacity-60"
+                  style={{ color: textColor }}
+                >
+                  {l.label}
+                </a>
+              </li>
+            );
+          })}
           <li>
             <a
               href="https://www.instagram.com/s0mped/"
@@ -113,18 +119,21 @@ export default function Navbar() {
       {menuOpen && (
         <div id="mobile-menu" className="md:hidden glass mt-3 mx-2 rounded-2xl p-6">
           <ul className="flex flex-col gap-5">
-            {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="font-display text-xl tracking-widest uppercase block"
-                  style={{ color: "#3D2660" }}
-                >
-                  ✧ {l.label}
-                </a>
-              </li>
-            ))}
+            {links.map((l) => {
+              const href = !isHome && l.href.startsWith("#") ? `/${l.href}` : l.href;
+              return (
+                <li key={l.href}>
+                  <a
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    className="font-display text-xl tracking-widest uppercase block"
+                    style={{ color: "#3D2660" }}
+                  >
+                    ✧ {l.label}
+                  </a>
+                </li>
+              );
+            })}
             <li>
               <a
                 href="https://www.instagram.com/s0mped/"
