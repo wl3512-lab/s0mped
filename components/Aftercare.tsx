@@ -29,6 +29,12 @@ const faqs = [
   },
 ];
 
+const precareRules = [
+  { label: "Before", rule: "Brush and floss thoroughly before your appointment for a clean surface and better retention." },
+  { label: "2 wks prior", rule: "Avoid teeth whitening for 2 weeks before. Whitening makes enamel porous, which can cause gems to fall off prematurely." },
+  { label: "Optional", rule: "A recent dental checkup is recommended to ensure teeth are clean and healthy before application." },
+];
+
 const aftercareRules = [
   { time: "2 hrs", rule: "No eating for 2 hours after your appointment" },
   { time: "24 hrs", rule: "No brushing teeth for 24 hours" },
@@ -156,6 +162,44 @@ export default function Aftercare() {
                 ))}
               </ul>
             </div>
+          </div>
+        </div>
+
+        {/* Pre-care */}
+        <div className="mt-10">
+          <p className="font-body text-xs tracking-widest uppercase mb-4" style={{ color: "rgba(196,181,232,0.4)" }}>
+            Pre-care
+          </p>
+          <div
+            className="rounded-2xl p-6"
+            style={{
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(196,181,232,0.12)",
+            }}
+          >
+            <p className="font-body font-light text-xs mb-4 leading-relaxed" style={{ color: "rgba(196,181,232,0.45)" }}>
+              Following these steps before your appointment helps gems bond better and last longer.
+            </p>
+            <ul className="flex flex-col gap-3">
+              {precareRules.map((r, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span
+                    className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-body font-semibold mt-0.5"
+                    style={{
+                      background: "rgba(196,181,232,0.12)",
+                      color: "rgba(196,181,232,0.55)",
+                      minWidth: "4.75rem",
+                      textAlign: "center",
+                    }}
+                  >
+                    {r.label}
+                  </span>
+                  <span className="font-body text-sm font-light leading-relaxed" style={{ color: "rgba(196,181,232,0.7)" }}>
+                    {r.rule}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

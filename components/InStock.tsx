@@ -30,7 +30,7 @@ const crystals: Crystal[] = [
     description:
       "Premium Austrian-made round crystals with multiple facets that catch and reflect light for maximum sparkle. Lead-free glass with a specialized coating for enhanced shine and long-lasting wear.",
     features: [
-      "Multiple sizes available",
+      "Available in SS3, SS5, SS6 & SS7",
       "Maximum brilliance & sparkle",
       "Classic, timeless look",
     ],
@@ -45,9 +45,9 @@ const crystals: Crystal[] = [
     description:
       "The iconic Aurora Borealis coating creates a mesmerizing rainbow effect that shifts and sparkles with every movement: soft pinks, blues, greens, and golds all in one gem.",
     features: [
+      "Available in SS3 & SS6",
       "Iridescent multi-color shift",
       "Catches light from every angle",
-      "Eye-catching in natural & artificial light",
     ],
   },
   {
@@ -87,12 +87,13 @@ const crystals: Crystal[] = [
     category: "Shaped",
     image: "/fang.webp",
     description:
-      "Teardrop-shaped with a precision-shaved edge for a bold fang effect. Catches light beautifully and delivers an edgy, statement look. The pointed silhouette mimics a natural canine shape.",
+      "Two raindrop crystals precision-shaved and placed to create a bold fang effect. Catches light beautifully, edgy and statement-making.",
     features: [
       "Bold, edgy aesthetic",
-      "Precision-cut teardrop shape",
+      "Two raindrop crystals per fang",
       "Perfect for canine teeth",
     ],
+    tip: "High-maintenance design. The crystals are thin and long, so pressure from biting hard or crunchy foods can cause them to fall off sooner. Best for clients who are aware of the extra care required.",
   },
   {
     name: "Diamond",
