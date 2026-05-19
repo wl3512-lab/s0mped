@@ -2,8 +2,13 @@
 
 import { useState } from "react";
 
+// Create a free form at formspree.io and paste your endpoint here:
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
 export default function Booking() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -16,9 +21,26 @@ export default function Booking() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(false);
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -152,28 +174,37 @@ export default function Booking() {
                   <label htmlFor="service" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
                     Service
                   </label>
-                  <select
-                    id="service"
-                    name="service"
-                    value={form.service}
-                    onChange={handleChange}
-                    required
-                    className="rounded-xl px-4 py-3 font-body text-sm transition-all"
-                    style={{
-                      background: "rgba(255,255,255,0.12)",
-                      border: "1px solid rgba(255,255,255,0.15)",
-                      color: form.service ? "#F2EEFF" : "rgba(255,255,255,0.45)",
-                    }}
-                  >
-                    <option value="" disabled>Select a service</option>
-                    <option value="single">Single Crystal</option>
-                    <option value="star-circle">Star &amp; Circle</option>
-                    <option value="crystal-line">Crystal Line</option>
-                    <option value="mock-braces">Mock Braces</option>
-                    <option value="gold-charm">Gold Charm</option>
-                    <option value="freestyle">Freestyle (5–6 crystals · $80)</option>
-                    <option value="custom">Custom / Not Sure</option>
-                  </select>
+                  <div className="relative">
+                    <select
+                      id="service"
+                      name="service"
+                      value={form.service}
+                      onChange={handleChange}
+                      required
+                      className="w-full rounded-xl px-4 py-3 pr-10 font-body text-sm transition-all"
+                      style={{
+                        background: "rgba(255,255,255,0.12)",
+                        border: "1px solid rgba(255,255,255,0.15)",
+                        color: form.service ? "#F2EEFF" : "rgba(255,255,255,0.45)",
+                      }}
+                    >
+                      <option value="" disabled>Select a service</option>
+                      <option value="single">Single Crystal</option>
+                      <option value="star-circle">Star &amp; Circle</option>
+                      <option value="crystal-line">Crystal Line</option>
+                      <option value="mock-braces">Mock Braces</option>
+                      <option value="gold-charm">Gold Charm</option>
+                      <option value="freestyle">Freestyle (5–6 crystals · $80)</option>
+                      <option value="custom">Custom / Not Sure</option>
+                    </select>
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs"
+                      style={{ color: "rgba(212,198,240,0.5)" }}
+                    >
+                      ▾
+                    </span>
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -196,15 +227,21 @@ export default function Booking() {
                   />
                 </div>
 
+                {error && (
+                  <p className="font-body text-xs text-center" style={{ color: "rgba(255,180,180,0.9)" }}>
+                    Something went wrong. Try again or DM me on Instagram.
+                  </p>
+                )}
                 <button
                   type="submit"
-                  className="rounded-full py-3.5 font-body font-semibold text-sm tracking-wide transition-all duration-200 hover:scale-105 hover:shadow-2xl mt-2"
+                  disabled={loading}
+                  className="rounded-full py-3.5 font-body font-semibold text-sm tracking-wide transition-all duration-200 hover:scale-105 hover:shadow-2xl mt-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
                   style={{
                     background: "linear-gradient(135deg, #C4B5E8, #8B7AC8)",
                     color: "#4a3065",
                   }}
                 >
-                  Request Appointment ✧
+                  {loading ? "Sending…" : "Request Appointment ✧"}
                 </button>
               </form>
             )}

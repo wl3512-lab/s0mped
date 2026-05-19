@@ -15,8 +15,8 @@ export default function Home() {
         <Hero />
         <Gallery />
         <Services />
-        <Aftercare />
         <InStock />
+        <Aftercare />
         <Booking />
       </main>
       <Footer />
