@@ -43,7 +43,7 @@ const crystals: Crystal[] = [
     category: "Round",
     image: "/gem-round-ab.jpg",
     description:
-      "The iconic Aurora Borealis coating creates a mesmerizing rainbow effect that shifts and sparkles with every movement — soft pinks, blues, greens, and golds all in one gem.",
+      "The iconic Aurora Borealis coating creates a mesmerizing rainbow effect that shifts and sparkles with every movement: soft pinks, blues, greens, and golds all in one gem.",
     features: [
       "Iridescent multi-color shift",
       "Catches light from every angle",
@@ -72,12 +72,12 @@ const crystals: Crystal[] = [
     category: "Shaped",
     image: "/gem-star.jpg",
     description:
-      "Available in four finishes — each with its own personality. Mix and match or go for a single statement star.",
+      "Available in four finishes, each with its own personality. Mix and match or go for a single statement star.",
     features: [
-      "Pink — soft, romantic, feminine",
-      "Purple (Light Amethyst) — regal & mystical",
-      "Aurora Borealis — iridescent showstopper",
-      "Clear — timeless, diamond-like shine",
+      "Pink: soft, romantic, feminine",
+      "Purple (Light Amethyst): regal, mystical",
+      "Aurora Borealis: iridescent showstopper",
+      "Clear: timeless, diamond-like shine",
     ],
   },
   {
@@ -101,7 +101,7 @@ const crystals: Crystal[] = [
     category: "Shaped",
     image: "/gem-diamond-ab.jpg",
     description:
-      "Geometric diamond-cut facets catch and reflect light from every angle — bold, refined, and modern. The AB version shifts through the entire color spectrum like the northern sky.",
+      "Geometric diamond-cut facets catch and reflect light from every angle: bold, refined, and modern. The AB version shifts through the entire color spectrum like the northern sky.",
     features: [
       "Sharp, geometric silhouette",
       "Applied to one tooth only",
@@ -117,7 +117,7 @@ const crystals: Crystal[] = [
     promo: "$60 PROMO",
     image: "/gem-navette-ab.jpg",
     description:
-      "Elongated teardrop silhouette specifically chosen for butterfly designs — the navette shape mimics butterfly wings perfectly. Ideal for paired placements or multi-gem arrangements.",
+      "Elongated teardrop silhouette specifically chosen for butterfly designs: the navette shape mimics butterfly wings perfectly. Ideal for paired placements or multi-gem arrangements.",
     features: [
       "Perfect for butterfly tooth art",
       "Clear or Aurora Borealis finish",
@@ -148,7 +148,7 @@ const crystals: Crystal[] = [
     description:
       "Sleek, sharp CZ navettes with a unique diamond-cut silhouette and flat bottom. Give off a brilliant shimmer and bring a modern, clean edge to any gem layout.",
     features: [
-      "Chrome finish — sharp & modern",
+      "Chrome finish: sharp, modern",
       "Diamond-cut silhouette",
       "Great for butterfly designs",
     ],
@@ -162,7 +162,7 @@ const crystals: Crystal[] = [
     description:
       "Delicate crescent-shaped crystals with an ultra-thin profile that sit flush on the tooth. Each micro moon is precision-shaved for comfortable, long-lasting wear.",
     features: [
-      "Crescent shape — celestial & elegant",
+      "Crescent shape: celestial, elegant",
       "Ultra-thin for comfortable wear",
       "Ideal on canines, lateral incisors, or premolars",
     ],
@@ -291,7 +291,7 @@ function GemCard({ c, cardKey, deviceTilt }: { c: Crystal; cardKey: string; devi
           <ul className="flex flex-col gap-1.5">
             {c.features.map((f) => (
               <li key={f} className="flex items-start gap-2 font-body text-xs" style={{ color: "rgba(196,181,232,0.6)" }}>
-                <span className="mt-0.5 shrink-0" style={{ color: "#9B8FD4" }}>✧</span>
+                <span aria-hidden="true" className="mt-0.5 shrink-0" style={{ color: "#9B8FD4" }}>✧</span>
                 {f}
               </li>
             ))}

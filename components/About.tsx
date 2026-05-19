@@ -39,7 +39,7 @@ export default function About() {
           {/* Text + stats */}
           <div className="flex flex-col items-start">
             <p className="font-body font-light leading-relaxed mb-5" style={{ color: "#6B5A9A", fontSize: "0.95rem" }}>
-              Hi — I&apos;m the artist behind s0mped, your go-to for sparkling, professionally
+              Hi, I&apos;m the artist behind s0mped, your go-to for sparkling, professionally
               applied tooth gems in NYC. I only use lead-free Swarovski crystals and premium
               gold charms, bonded safely with dental-grade adhesive.
             </p>

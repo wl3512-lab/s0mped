@@ -28,10 +28,10 @@ export default function Booking() {
       style={{ background: "linear-gradient(160deg, #4a3065 0%, #6b4a9a 40%, #9b8fd4 100%)" }}
     >
       {/* Decorative sparkles */}
-      <span className="absolute top-12 left-[10%] text-2xl float opacity-30" style={{ color: "#D4C6F0" }}>✧</span>
-      <span className="absolute top-1/3 right-[8%] text-xl float twinkle opacity-20" style={{ color: "#C4B5E8", animationDelay: "1s" }}>✧</span>
-      <span className="absolute bottom-20 left-[20%] text-lg float opacity-25" style={{ color: "#D4C6F0", animationDelay: "1.5s" }}>✧</span>
-      <span className="absolute bottom-1/3 right-[15%] text-3xl float twinkle opacity-15" style={{ color: "#C4B5E8", animationDelay: "0.5s" }}>✧</span>
+      <span aria-hidden="true" className="absolute top-12 left-[10%] text-2xl float opacity-30" style={{ color: "#D4C6F0" }}>✧</span>
+      <span aria-hidden="true" className="absolute top-1/3 right-[8%] text-xl float twinkle opacity-20" style={{ color: "#C4B5E8", animationDelay: "1s" }}>✧</span>
+      <span aria-hidden="true" className="absolute bottom-20 left-[20%] text-lg float opacity-25" style={{ color: "#D4C6F0", animationDelay: "1.5s" }}>✧</span>
+      <span aria-hidden="true" className="absolute bottom-1/3 right-[15%] text-3xl float twinkle opacity-15" style={{ color: "#C4B5E8", animationDelay: "0.5s" }}>✧</span>
 
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Header */}
@@ -43,8 +43,8 @@ export default function Booking() {
             Book Your Appointment
           </p>
           <h2
-            className="font-script mb-4"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)", color: "#fff", lineHeight: 1 }}
+            className="reveal-heading font-script mb-4"
+            style={{ fontSize: "clamp(2.5rem, 7vw, 5rem)", color: "#F2EEFF", lineHeight: 1 }}
           >
             get your gem
           </h2>
@@ -65,10 +65,10 @@ export default function Booking() {
                 className="rounded-3xl p-10 text-center"
                 style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }}
               >
-                <div className="text-5xl mb-4 float" style={{ color: "#D4C6F0" }}>✧</div>
+                <div aria-hidden="true" className="text-5xl mb-4 float" style={{ color: "#D4C6F0" }}>✧</div>
                 <h3
                   className="font-script text-4xl mb-3"
-                  style={{ color: "#fff" }}
+                  style={{ color: "#F2EEFF" }}
                 >
                   you&apos;re on the list!
                 </h3>
@@ -102,7 +102,7 @@ export default function Booking() {
                       style={{
                         background: "rgba(255,255,255,0.1)",
                         border: "1px solid rgba(255,255,255,0.15)",
-                        color: "#fff",
+                        color: "#F2EEFF",
                       }}
                     />
                   </div>
@@ -122,7 +122,7 @@ export default function Booking() {
                       style={{
                         background: "rgba(255,255,255,0.1)",
                         border: "1px solid rgba(255,255,255,0.15)",
-                        color: "#fff",
+                        color: "#F2EEFF",
                       }}
                     />
                   </div>
@@ -143,7 +143,7 @@ export default function Booking() {
                     style={{
                       background: "rgba(255,255,255,0.1)",
                       border: "1px solid rgba(255,255,255,0.15)",
-                      color: "#fff",
+                      color: "#F2EEFF",
                     }}
                   />
                 </div>
@@ -162,7 +162,7 @@ export default function Booking() {
                     style={{
                       background: "rgba(255,255,255,0.12)",
                       border: "1px solid rgba(255,255,255,0.15)",
-                      color: form.service ? "#fff" : "rgba(255,255,255,0.45)",
+                      color: form.service ? "#F2EEFF" : "rgba(255,255,255,0.45)",
                     }}
                   >
                     <option value="" disabled>Select a service</option>
@@ -191,7 +191,7 @@ export default function Booking() {
                     style={{
                       background: "rgba(255,255,255,0.1)",
                       border: "1px solid rgba(255,255,255,0.15)",
-                      color: "#fff",
+                      color: "#F2EEFF",
                     }}
                   />
                 </div>
@@ -229,7 +229,7 @@ export default function Booking() {
                 <div className="flex items-start gap-3">
                   <span className="text-lg mt-0.5" style={{ color: "#D4C6F0" }}>{item.icon}</span>
                   <div>
-                    <p className="font-body font-semibold text-sm mb-1" style={{ color: "#fff" }}>
+                    <p className="font-body font-semibold text-sm mb-1" style={{ color: "#F2EEFF" }}>
                       {item.title}
                     </p>
                     <p className="font-body font-light text-xs leading-relaxed" style={{ color: "rgba(212,198,240,0.7)" }}>
@@ -253,7 +253,7 @@ export default function Booking() {
             >
               <InstagramIcon />
               <div>
-                <p className="font-body font-semibold text-sm" style={{ color: "#fff" }}>
+                <p className="font-body font-semibold text-sm" style={{ color: "#F2EEFF" }}>
                   Prefer to DM?
                 </p>
                 <p className="font-body font-light text-xs" style={{ color: "rgba(212,198,240,0.7)" }}>

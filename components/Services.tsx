@@ -72,7 +72,7 @@ export default function Services() {
               </span>
             </div>
             <p className="font-body font-light text-sm leading-relaxed" style={{ color: "#6B5A9A" }}>
-              One gem, placed exactly where you want it. Covers consultation, application, and aftercare — your base for any look.
+              One gem, placed exactly where you want it. Covers consultation, application, and aftercare: your base for any look.
             </p>
           </div>
 
@@ -100,7 +100,7 @@ export default function Services() {
               </span>
             </div>
             <p className="font-body font-light text-sm leading-relaxed" style={{ color: "rgba(242,238,255,0.7)" }}>
-              Every extra gem is a flat $10 — no matter the style, shape, or color. Stack as many as you want.
+              Every extra gem is a flat $10, no matter the style, shape, or color. Stack as many as you want.
             </p>
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function Services() {
               <span className="font-body font-semibold text-xl" style={{ color: "#C4B5E8" }}>$60</span>
             </div>
             <p className="font-body font-light text-sm leading-relaxed" style={{ color: "rgba(242,238,255,0.7)" }}>
-              4 navette gems arranged into a butterfly formation — a signature look. Limited promo pricing, DM to book.
+              4 navette gems arranged into a butterfly formation, a signature look. Limited promo pricing, DM to book.
             </p>
           </div>
           <a
@@ -162,19 +162,19 @@ export default function Services() {
               icon: "✧ ✦",
               name: "Star & Circle",
               price: "from $65",
-              description: "Star + round crystal = 2 gems. Base $55 + $10. A popular combo — mix any shapes you like.",
+              description: "Star + round crystal = 2 gems. Base $55 + $10. A popular combo; mix any shapes you like.",
             },
             {
               icon: "✧✧✧✧",
               name: "Crystal Line",
               price: "from $85",
-              description: "4-gem row = base $55 + 3 add-ons ($30). More gems, more sparkle — same flat rate per gem.",
+              description: "4-gem row = base $55 + 3 add-ons ($30). More gems, more sparkle; same flat rate per gem.",
             },
             {
               icon: "✧✧✧✧✧",
               name: "Freestyle",
               price: "$80",
-              description: "You pick which teeth — I design the layout. 5–6 crystals, custom arrangement, cheaper than building it gem by gem.",
+              description: "You pick which teeth; I design the layout. 5–6 crystals, custom arrangement, cheaper than building it gem by gem.",
             },
           ].map((s) => (
             <div
@@ -223,7 +223,7 @@ export default function Services() {
               </span>
             </div>
             <p className="font-body font-light text-sm leading-relaxed" style={{ color: "#6B5A9A" }}>
-              Premium solid 18k gold or white gold charms. Preorder required — DM @s0mped to reserve yours before booking.
+              Premium solid 18k gold or white gold charms. Preorder required: DM @s0mped to reserve yours before booking.
             </p>
           </div>
           <a
@@ -250,7 +250,7 @@ export default function Services() {
               color: "#3D2660",
             }}
           >
-            ✧ NYU students get 10% off — show your ID
+            ✧ NYU students get 10% off (show your ID)
           </div>
           <div className="font-body text-xs text-center" style={{ color: "#9B8FD4" }}>
             Mobile service available throughout NYC

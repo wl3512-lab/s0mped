@@ -103,7 +103,7 @@ export default function Footer() {
           }}
         >
           <span>© {new Date().getFullYear()} s0mped. All rights reserved.</span>
-          <span className="font-script text-xl" style={{ color: "rgba(196, 181, 232, 0.2)" }}>
+          <span aria-hidden="true" className="font-script text-xl" style={{ color: "rgba(196, 181, 232, 0.2)" }}>
             ✧
           </span>
           <span>luxury gems, applied with care</span>

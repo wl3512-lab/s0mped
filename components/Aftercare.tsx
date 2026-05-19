@@ -9,11 +9,11 @@ const faqs = [
   },
   {
     q: "Does the application hurt?",
-    a: "Not at all — completely painless. No drilling, no needles, no damage to your enamel. The gem is bonded with dental-grade adhesive, the same used by orthodontists.",
+    a: "Not at all. Completely painless. No drilling, no needles, no damage to your enamel. The gem is bonded with dental-grade adhesive, the same used by orthodontists.",
   },
   {
     q: "Is it reversible?",
-    a: "Yes, fully reversible. Only have a professional remove it — the process is quick, painless, and leaves no marks on your enamel.",
+    a: "Yes, fully reversible. Only have a professional remove it: the process is quick, painless, and leaves no marks on your enamel.",
   },
   {
     q: "Is it safe for my teeth?",
@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     q: "Can I eat and drink normally?",
-    a: "After 48 hours, yes. The first 48 hours require care — soft foods only, avoid front-tooth biting, no extreme heat or acidic drinks while the glue fully sets.",
+    a: "After 48 hours, yes. The first 48 hours require care: soft foods only, avoid front-tooth biting, no extreme heat or acidic drinks while the glue fully sets.",
   },
 ];
 
@@ -34,8 +34,8 @@ const aftercareRules = [
   { time: "48 hrs", rule: "Avoid biting into hard foods with front teeth (apples, corn, etc.)" },
   { time: "48 hrs", rule: "No smoking, vaping, or alcohol" },
   { time: "always", rule: "Avoid touching or playing with the gem" },
-  { time: "always", rule: "Acidic drinks like soda reduce longevity — minimize them" },
-  { time: "24–48 hrs", rule: "Glue takes 24–48 hours to fully develop — be gentle" },
+  { time: "always", rule: "Acidic drinks like soda reduce longevity; minimize them." },
+  { time: "24–48 hrs", rule: "Glue takes 24–48 hours to fully develop; be gentle." },
 ];
 
 export default function Aftercare() {
@@ -92,20 +92,29 @@ export default function Aftercare() {
                     {item.q}
                   </span>
                   <span
+                    aria-hidden="true"
                     className="shrink-0 text-base transition-transform duration-200"
                     style={{ color: "#9B8FD4", transform: open === i ? "rotate(45deg)" : "none" }}
                   >
                     ✦
                   </span>
                 </button>
-                {open === i && (
-                  <p
-                    className="px-5 pb-4 font-body font-light text-sm leading-relaxed"
-                    style={{ color: "rgba(196,181,232,0.65)" }}
-                  >
-                    {item.a}
-                  </p>
-                )}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateRows: open === i ? "1fr" : "0fr",
+                    transition: "grid-template-rows 0.28s cubic-bezier(0.16, 1, 0.3, 1)",
+                  }}
+                >
+                  <div style={{ overflow: "hidden" }}>
+                    <p
+                      className="px-5 pb-4 font-body font-light text-sm leading-relaxed"
+                      style={{ color: "rgba(196,181,232,0.65)" }}
+                    >
+                      {item.a}
+                    </p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -130,7 +139,7 @@ export default function Aftercare() {
                       style={{
                         background: "rgba(196,181,232,0.12)",
                         color: "rgba(196,181,232,0.55)",
-                        minWidth: "3.5rem",
+                        minWidth: "4.75rem",
                         textAlign: "center",
                       }}
                     >

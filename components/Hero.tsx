@@ -28,6 +28,7 @@ export default function Hero() {
       ].map((s, i) => (
         <span
           key={i}
+          aria-hidden="true"
           className="absolute float twinkle pointer-events-none select-none"
           style={{ ...s, fontSize: s.size, animationDelay: s.delay, color: "#C4B5E8", opacity: s.op }}
         >
@@ -47,9 +48,9 @@ export default function Hero() {
             color: "#C4B5E8",
           }}
         >
-          <span className="twinkle text-xs">✧</span>
+          <span aria-hidden="true" className="twinkle text-xs">✧</span>
           Tooth Gem Artist · NYC
-          <span className="twinkle text-xs" style={{ animationDelay: "1.1s" }}>✧</span>
+          <span aria-hidden="true" className="twinkle text-xs" style={{ animationDelay: "1.1s" }}>✧</span>
         </div>
 
         {/* Logo */}

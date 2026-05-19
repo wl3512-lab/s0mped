@@ -33,7 +33,8 @@ function PhotoTile({ item }: { item: (typeof photos)[number] }) {
       href={item.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="reveal-photo group relative rounded-2xl overflow-hidden aspect-square cursor-pointer transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl"
+      className="reveal-photo group relative rounded-2xl overflow-hidden aspect-square cursor-pointer hover:scale-[1.03]"
+      style={{ transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)" }}
     >
       <Image
         src={item.src}
