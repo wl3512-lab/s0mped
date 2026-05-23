@@ -318,6 +318,49 @@ body {
   }
 }
 
+/* Tagline: fades up after logo crystallizes */
+@keyframes loading-tagline-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progress line: fills left-to-right over loading duration */
+@keyframes loading-progress-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.loading-tagline {
+  /* Visible immediately for reduced-motion users */
+  opacity: 1;
+}
+
+.loading-progress {
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .loading-tagline {
+    opacity: 0;
+    animation: loading-tagline-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.0s both;
+  }
+  .loading-progress {
+    background: linear-gradient(
+      90deg,
+      rgba(196, 181, 232, 0.12),
+      rgba(196, 181, 232, 0.5) 50%,
+      rgba(196, 181, 232, 0.12)
+    );
+    animation: loading-progress-fill 1.58s ease 0.1s both;
+  }
+}
+
 /* ─── Mobile booking pill ─── */
 
 @keyframes pill-pulse {
