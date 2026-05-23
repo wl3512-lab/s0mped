@@ -14,14 +14,23 @@ function useReducedMotion(): boolean {
   return reduced;
 }
 
+/* Prismatic diamond gems scattered around the centered logo */
+const DIAMONDS = [
+  { cls: "loading-diamond-1", w: 20, h: 20, top: "28%",  left: "14%",  opacity: 0.75 },
+  { cls: "loading-diamond-2", w: 13, h: 13, top: "20%",  right: "18%", opacity: 0.6  },
+  { cls: "loading-diamond-3", w: 24, h: 24, top: "46%",  left: "8%",   opacity: 0.65 },
+  { cls: "loading-diamond-4", w: 11, h: 11, top: "58%",  right: "12%", opacity: 0.48 },
+  { cls: "loading-diamond-5", w: 16, h: 16, bottom: "26%", left: "24%", opacity: 0.55 },
+] as const;
+
 export default function LoadingScreen() {
   const [hiding, setHiding] = useState(false);
   const [gone, setGone] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const t1 = setTimeout(() => setHiding(true), 1700);
-    const t2 = setTimeout(() => setGone(true), 2500);
+    const t1 = setTimeout(() => setHiding(true), 1900);
+    const t2 = setTimeout(() => setGone(true), 2700);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -33,50 +42,73 @@ export default function LoadingScreen() {
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden"
       style={{
         background: "linear-gradient(160deg, #1A0F2E 0%, #2E1A52 55%, #3D2660 100%)",
         opacity: hiding ? 0 : 1,
         transform: hiding ? "scale(0.97) translateY(-8px)" : "scale(1) translateY(0)",
         transition: prefersReducedMotion
           ? "opacity 0.01ms"
-          : "opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1), transform 0.72s cubic-bezier(0.16, 1, 0.3, 1)",
+          : "opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
         pointerEvents: hiding ? "none" : "all",
       }}
     >
-      {/* Ambient blobs */}
+      {/* Primary radial bloom — contracts as crystal forms */}
       <div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-15 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #C4B5E8, transparent)" }}
+        aria-hidden="true"
+        className="loading-bloom absolute rounded-full pointer-events-none"
+        style={{
+          width: "72vmax",
+          height: "72vmax",
+          top: "50%",
+          left: "50%",
+          marginTop: "-36vmax",
+          marginLeft: "-36vmax",
+          background:
+            "radial-gradient(circle, rgba(196,181,232,0.24) 0%, rgba(155,143,212,0.1) 42%, transparent 68%)",
+        }}
       />
+      {/* Secondary deep bloom */}
       <div
-        className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full opacity-10 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #9B8FD4, transparent)" }}
+        aria-hidden="true"
+        className="absolute rounded-full pointer-events-none opacity-10"
+        style={{
+          width: "38vmax",
+          height: "38vmax",
+          bottom: "8%",
+          right: "12%",
+          background: "radial-gradient(circle, rgba(107,74,154,0.3) 0%, transparent 60%)",
+        }}
       />
 
-      {/* Sparkles — sequential prelude, then persistent twinkle */}
-      <div className="flex items-center gap-6 mb-10" aria-hidden="true">
-        {(["loading-sparkle-1", "loading-sparkle-2", "loading-sparkle-3"] as const).map((cls, i) => (
-          <span
-            key={i}
-            className={`select-none ${cls}`}
-            style={{ fontSize: "0.78rem", color: "#C4B5E8" }}
-          >
-            ✧
-          </span>
-        ))}
-      </div>
+      {/* Prismatic diamond gems */}
+      {DIAMONDS.map((d) => (
+        <div
+          key={d.cls}
+          aria-hidden="true"
+          className={`loading-diamond ${d.cls} absolute pointer-events-none select-none`}
+          style={{
+            width: d.w,
+            height: d.h,
+            top: "top" in d ? d.top : undefined,
+            left: "left" in d ? d.left : undefined,
+            right: "right" in d ? d.right : undefined,
+            bottom: "bottom" in d ? d.bottom : undefined,
+            opacity: d.opacity,
+          }}
+        />
+      ))}
 
-      {/* Logo — crystallizes into focus */}
+      {/* Logo — horizontal navette clip-path crystallizes into full wordmark */}
       <div className="relative loading-logo" style={{ overflow: "hidden" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/somped-vector.svg"
           alt=""
-          className="w-64 sm:w-80 md:w-[340px] h-auto block"
+          className="w-64 sm:w-80 md:w-[360px] h-auto block"
           style={{ filter: "brightness(0) invert(1)" }}
         />
-        {/* Shimmer sweep — alpha mask confines it to letterform paths */}
+        {/* Shimmer sweep confined to letterform paths via SVG mask */}
         <div
           className="loading-shine-sweep absolute inset-0 pointer-events-none"
           style={{
@@ -94,16 +126,16 @@ export default function LoadingScreen() {
         />
       </div>
 
-      {/* Tagline — fades up as logo settles */}
+      {/* Tagline — rises as logo settles */}
       <p
         aria-hidden="true"
-        className="loading-tagline font-body select-none mt-7 text-[0.6rem] tracking-[0.28em] uppercase"
+        className="loading-tagline font-body select-none mt-6 text-[0.6rem] tracking-[0.28em] uppercase"
         style={{ color: "rgba(196, 181, 232, 0.42)" }}
       >
         tooth gem artist · nyc
       </p>
 
-      {/* Progress line — fills across screen over loading duration */}
+      {/* Progress line — fills and shimmers across the bottom */}
       <div
         aria-hidden="true"
         className="absolute bottom-0 left-0 right-0 h-px pointer-events-none overflow-hidden"
