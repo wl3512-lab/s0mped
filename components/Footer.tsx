@@ -55,7 +55,6 @@ export default function Footer() {
               {[
                 { label: "Gallery", href: "#gallery" },
                 { label: "Services", href: "#services" },
-                { label: "Suggest a Gem", href: "#suggest" },
                 { label: "FAQ", href: "#faq" },
                 { label: "Aftercare", href: "#aftercare" },
                 { label: "Book", href: "#book" },

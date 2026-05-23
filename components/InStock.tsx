@@ -427,6 +427,14 @@ export default function InStock() {
             </a>{" "}
             to confirm availability or request a gem not listed.
           </p>
+          <a
+            href="#suggest"
+            className="font-body text-xs tracking-widest uppercase transition-opacity hover:opacity-70 flex items-center gap-1.5"
+            style={{ color: "rgba(196,181,232,0.5)" }}
+          >
+            <span aria-hidden="true">✦</span>
+            Don&apos;t see what you want? Suggest a gem
+          </a>
         </div>
       </div>
     </section>

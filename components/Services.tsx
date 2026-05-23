@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Services() {
   return (
@@ -214,16 +217,8 @@ export default function Services() {
             boxShadow: "0 2px 16px rgba(61,38,96,0.06)",
           }}
         >
-          {/* Example image */}
-          <div className="relative w-full sm:w-48 h-48 sm:h-auto shrink-0">
-            <Image
-              src="/silver.png"
-              alt="18k gold and white gold tooth gem charm example"
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 100vw, 192px"
-            />
-          </div>
+          {/* Example image — hidden if silver.png not yet in /public */}
+          <GoldCharmsImage />
           <div className="p-7 flex flex-col sm:flex-row sm:items-center gap-6 flex-1">
           <div className="text-3xl shrink-0" style={{ color: "#9B8FD4" }}>⬡</div>
           <div className="flex-1">
@@ -285,5 +280,22 @@ export default function Services() {
         </div>
       </div>
     </section>
+  );
+}
+
+function GoldCharmsImage() {
+  const [visible, setVisible] = useState(true);
+  if (!visible) return null;
+  return (
+    <div className="relative w-full sm:w-48 h-48 sm:h-auto shrink-0">
+      <Image
+        src="/silver.png"
+        alt="18k gold and white gold tooth gem charm example"
+        fill
+        className="object-cover"
+        sizes="(max-width: 640px) 100vw, 192px"
+        onError={() => setVisible(false)}
+      />
+    </div>
   );
 }
