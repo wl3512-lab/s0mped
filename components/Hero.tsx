@@ -9,22 +9,22 @@ export default function Hero() {
     >
       {/* Background blobs */}
       <div
-        className="absolute top-1/3 -left-40 w-[36rem] h-[36rem] rounded-full opacity-20 blur-3xl pointer-events-none"
+        className="absolute top-1/3 -left-40 w-[48rem] h-[48rem] rounded-full opacity-30 blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(circle, #C4B5E8, transparent)" }}
       />
       <div
-        className="absolute bottom-1/4 -right-32 w-80 h-80 rounded-full opacity-15 blur-3xl pointer-events-none"
+        className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full opacity-22 blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(circle, #9B8FD4, transparent)" }}
       />
 
       {/* Ambient sparkles */}
       {[
-        { top: "12%",  left:  "8%",  size: "1.4rem", delay: "0s",   op: 0.35 },
-        { top: "22%",  right: "10%", size: "0.75rem",delay: "0.7s", op: 0.28 },
-        { top: "55%",  left:  "5%",  size: "0.9rem", delay: "1.4s", op: 0.22 },
-        { bottom:"18%",right: "16%", size: "1.1rem", delay: "0.3s", op: 0.32 },
-        { top: "42%",  right: "4%",  size: "0.55rem",delay: "1.9s", op: 0.18 },
-        { bottom:"32%",left:  "20%", size: "1.7rem", delay: "1s",   op: 0.18 },
+        { top: "12%",  left:  "8%",  size: "2rem",   delay: "0s",   op: 0.45 },
+        { top: "22%",  right: "10%", size: "0.85rem",delay: "0.7s", op: 0.32 },
+        { top: "55%",  left:  "5%",  size: "1.1rem", delay: "1.4s", op: 0.28 },
+        { bottom:"18%",right: "16%", size: "1.4rem", delay: "0.3s", op: 0.38 },
+        { top: "42%",  right: "4%",  size: "0.65rem",delay: "1.9s", op: 0.22 },
+        { bottom:"32%",left:  "20%", size: "2.6rem", delay: "1s",   op: 0.25 },
       ].map((s, i) => (
         <span
           key={i}
@@ -43,8 +43,8 @@ export default function Hero() {
         <div
           className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-body tracking-widest uppercase mb-10"
           style={{
-            background: "rgba(196, 181, 232, 0.1)",
-            border: "1px solid rgba(196, 181, 232, 0.2)",
+            background: "rgba(196, 181, 232, 0.12)",
+            border: "1px solid rgba(196, 181, 232, 0.32)",
             color: "#C4B5E8",
           }}
         >
@@ -59,7 +59,7 @@ export default function Hero() {
           alt="s0mped"
           width={520}
           height={180}
-          className="w-72 sm:w-80 md:w-96 lg:w-[28rem] h-auto mb-7"
+          className="w-72 sm:w-88 md:w-[28rem] lg:w-[38rem] xl:w-[44rem] h-auto mb-7"
           style={{ filter: "brightness(0) invert(1)" }}
           priority
           unoptimized
@@ -68,7 +68,7 @@ export default function Hero() {
         {/* Body */}
         <p
           className="font-body font-light max-w-md mx-auto mb-12 leading-relaxed"
-          style={{ fontSize: "0.92rem", color: "rgba(196, 181, 232, 0.72)" }}
+          style={{ fontSize: "1rem", color: "rgba(196, 181, 232, 0.8)" }}
         >
           Custom Swarovski crystal tooth gems applied safely, painlessly,
           and beautifully. Certified 2024 ✧ Lead-free crystals only.
@@ -78,7 +78,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center w-full max-w-sm mx-auto">
           <a
             href="#book"
-            className="w-full sm:w-auto rounded-full px-8 py-3.5 font-body font-semibold text-sm tracking-wide text-center transition-all duration-200 hover:scale-105 glow"
+            className="w-full sm:w-auto rounded-full px-9 py-4 font-body font-semibold text-sm tracking-wide text-center transition-all duration-200 hover:scale-105 glow"
             style={{
               background: "linear-gradient(135deg, #C4B5E8 0%, #9B8FD4 100%)",
               color: "#1A0F2E",
@@ -90,7 +90,7 @@ export default function Hero() {
             href="https://www.instagram.com/s0mped/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto rounded-full px-8 py-3.5 font-body font-medium text-sm tracking-wide text-center transition-all duration-200 hover:scale-105"
+            className="w-full sm:w-auto rounded-full px-9 py-4 font-body font-medium text-sm tracking-wide text-center transition-all duration-200 hover:scale-105"
             style={{
               background: "rgba(196, 181, 232, 0.08)",
               border: "1px solid rgba(196, 181, 232, 0.25)",

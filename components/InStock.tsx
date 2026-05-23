@@ -115,7 +115,7 @@ const crystals: Crystal[] = [
     type: "Swarovski",
     colors: ["Clear", "Aurora Borealis"],
     category: "Shaped",
-    promo: "$60 PROMO",
+    promo: "$70 PROMO",
     image: "/gem-navette-ab.jpg",
     description:
       "Elongated teardrop silhouette specifically chosen for butterfly designs: the navette shape mimics butterfly wings perfectly. Ideal for paired placements or multi-gem arrangements.",
@@ -338,18 +338,18 @@ export default function InStock() {
       style={{ background: "#1A0F2E" }}
     >
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-64 opacity-10 blur-3xl pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-64 opacity-20 blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(ellipse, #C4B5E8, transparent)" }}
       />
 
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-12">
-          <p className="font-body text-xs tracking-widest uppercase mb-3" style={{ color: "rgba(196,181,232,0.6)" }}>
+          <p className="font-body text-xs tracking-widest uppercase mb-3" style={{ color: "rgba(196,181,232,0.75)" }}>
             Tooth Gem Inventory
           </p>
           <h2
             className="reveal-heading font-script mb-4"
-            style={{ fontSize: "clamp(3.5rem, 9vw, 6.5rem)", color: "#F2EEFF", lineHeight: 1 }}
+            style={{ fontSize: "clamp(4rem, 11vw, 8rem)", color: "#F2EEFF", lineHeight: 1 }}
           >
             in stock
           </h2>

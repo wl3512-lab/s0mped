@@ -69,7 +69,7 @@ export default function Aftercare() {
           </p>
           <h2
             className="reveal-heading font-script mb-4"
-            style={{ fontSize: "clamp(3.5rem, 9vw, 6.5rem)", color: "#F2EEFF", lineHeight: 1 }}
+            style={{ fontSize: "clamp(4rem, 11vw, 8rem)", color: "#F2EEFF", lineHeight: 1 }}
           >
             good to know
           </h2>
@@ -81,7 +81,7 @@ export default function Aftercare() {
         <div className="grid md:grid-cols-2 gap-10">
           {/* FAQ accordion */}
           <div className="flex flex-col gap-2">
-            <p className="font-body text-xs tracking-widest uppercase mb-4" style={{ color: "rgba(196,181,232,0.4)" }}>
+            <p className="font-body text-xs tracking-widest uppercase mb-4" style={{ color: "rgba(196,181,232,0.65)" }}>
               Questions
             </p>
             {faqs.map((item, i) => (
@@ -131,7 +131,7 @@ export default function Aftercare() {
 
           {/* Aftercare checklist */}
           <div>
-            <p className="font-body text-xs tracking-widest uppercase mb-4" style={{ color: "rgba(196,181,232,0.4)" }}>
+            <p className="font-body text-xs tracking-widest uppercase mb-4" style={{ color: "rgba(196,181,232,0.65)" }}>
               Aftercare
             </p>
             <div
@@ -167,7 +167,7 @@ export default function Aftercare() {
 
         {/* Pre-care */}
         <div className="mt-10">
-          <p className="font-body text-xs tracking-widest uppercase mb-4" style={{ color: "rgba(196,181,232,0.4)" }}>
+          <p className="font-body text-xs tracking-widest uppercase mb-4" style={{ color: "rgba(196,181,232,0.65)" }}>
             Pre-care
           </p>
           <div

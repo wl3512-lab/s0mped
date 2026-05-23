@@ -2,13 +2,9 @@
 
 import { useState } from "react";
 
-// Create a free form at formspree.io and paste your endpoint here:
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjgzgbpg";
+const CONTACT_EMAIL = "wl3512@nyu.edu";
 
 export default function Booking() {
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -21,26 +17,18 @@ export default function Booking() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    setError(false);
-    try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setSubmitted(true);
-      } else {
-        setError(true);
-      }
-    } catch {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+  function buildMailto() {
+    const subject = encodeURIComponent("Tooth Gem Booking Request");
+    const lines = [
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      form.instagram ? `Instagram: ${form.instagram}` : null,
+      form.service ? `Service: ${form.service}` : null,
+      form.message ? `\nMessage:\n${form.message}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${encodeURIComponent(lines)}`;
   }
 
   return (
@@ -66,7 +54,7 @@ export default function Booking() {
           </p>
           <h2
             className="reveal-heading font-script mb-4"
-            style={{ fontSize: "clamp(3.5rem, 9vw, 6.5rem)", color: "#F2EEFF", lineHeight: 1 }}
+            style={{ fontSize: "clamp(4rem, 11vw, 8rem)", color: "#F2EEFF", lineHeight: 1 }}
           >
             get your gem
           </h2>
@@ -80,101 +68,32 @@ export default function Booking() {
         </div>
 
         <div className="grid md:grid-cols-5 gap-10">
-          {/* Form */}
+          {/* Form — opens mail client on submit */}
           <div className="md:col-span-3">
-            {submitted ? (
-              <div
-                className="rounded-3xl p-10 text-center flex flex-col items-center"
-                style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }}
-              >
-                <div aria-hidden="true" className="text-5xl mb-4 float" style={{ color: "#D4C6F0" }}>✧</div>
-                <h3
-                  className="font-script text-4xl mb-3"
-                  style={{ color: "#F2EEFF" }}
-                >
-                  you&apos;re on the list!
-                </h3>
-                <p className="font-body font-light mb-8" style={{ color: "rgba(212, 198, 240, 0.85)" }}>
-                  I&apos;ll DM you on Instagram or reply by email within 24 hours to confirm.
-                </p>
-                <a
-                  href="https://www.instagram.com/s0mped/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 rounded-full px-6 py-3 font-body text-sm font-medium transition-all hover:scale-105"
-                  style={{
-                    background: "rgba(196,181,232,0.15)",
-                    border: "1px solid rgba(196,181,232,0.3)",
-                    color: "#C4B5E8",
-                  }}
-                >
-                  <InstagramIcon />
-                  Follow @s0mped for inspo
-                </a>
-              </div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="rounded-3xl p-8 flex flex-col gap-5"
-                style={{
-                  background: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                }}
-              >
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="name" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
-                      Name
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Your name"
-                      className="rounded-xl px-4 py-3 font-body text-sm transition-all"
-                      style={{
-                        background: "rgba(255,255,255,0.1)",
-                        border: "1px solid rgba(255,255,255,0.15)",
-                        color: "#F2EEFF",
-                      }}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="email" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="your@email.com"
-                      className="rounded-xl px-4 py-3 font-body text-sm transition-all"
-                      style={{
-                        background: "rgba(255,255,255,0.1)",
-                        border: "1px solid rgba(255,255,255,0.15)",
-                        color: "#F2EEFF",
-                      }}
-                    />
-                  </div>
-                </div>
-
+            <form
+              className="rounded-3xl p-8 flex flex-col gap-5"
+              style={{
+                background: "rgba(255,255,255,0.08)",
+                border: "1px solid rgba(255,255,255,0.12)",
+              }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                window.location.href = buildMailto();
+              }}
+            >
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="instagram" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
-                    Instagram Handle
+                  <label htmlFor="name" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
+                    Name
                   </label>
                   <input
-                    id="instagram"
+                    id="name"
                     type="text"
-                    name="instagram"
-                    value={form.instagram}
+                    name="name"
+                    value={form.name}
                     onChange={handleChange}
-                    placeholder="@yourhandle"
+                    required
+                    placeholder="Your name"
                     className="rounded-xl px-4 py-3 font-body text-sm transition-all"
                     style={{
                       background: "rgba(255,255,255,0.1)",
@@ -183,56 +102,19 @@ export default function Booking() {
                     }}
                   />
                 </div>
-
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="service" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
-                    Service
+                  <label htmlFor="email" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
+                    Email
                   </label>
-                  <div className="relative">
-                    <select
-                      id="service"
-                      name="service"
-                      value={form.service}
-                      onChange={handleChange}
-                      required
-                      className="w-full rounded-xl px-4 py-3 pr-10 font-body text-sm transition-all"
-                      style={{
-                        background: "rgba(255,255,255,0.12)",
-                        border: "1px solid rgba(255,255,255,0.15)",
-                        color: form.service ? "#F2EEFF" : "rgba(255,255,255,0.45)",
-                      }}
-                    >
-                      <option value="" disabled>Select a service</option>
-                      <option value="single">Single Crystal</option>
-                      <option value="star-circle">Star &amp; Circle</option>
-                      <option value="crystal-line">Crystal Line</option>
-                      <option value="mock-braces">Mock Braces</option>
-                      <option value="gold-charm">Gold Charm</option>
-                      <option value="freestyle">Freestyle (5–6 crystals · $80)</option>
-                      <option value="custom">Custom / Not Sure</option>
-                    </select>
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs"
-                      style={{ color: "rgba(212,198,240,0.5)" }}
-                    >
-                      ▾
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="message" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
-                    Message (optional)
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={form.message}
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={form.email}
                     onChange={handleChange}
-                    rows={3}
-                    placeholder="Inspo, questions, or anything you want me to know..."
-                    className="rounded-xl px-4 py-3 font-body text-sm transition-all resize-none"
+                    required
+                    placeholder="your@email.com"
+                    className="rounded-xl px-4 py-3 font-body text-sm transition-all"
                     style={{
                       background: "rgba(255,255,255,0.1)",
                       border: "1px solid rgba(255,255,255,0.15)",
@@ -240,25 +122,96 @@ export default function Booking() {
                     }}
                   />
                 </div>
+              </div>
 
-                {error && (
-                  <p className="font-body text-xs text-center" style={{ color: "rgba(255,180,180,0.9)" }}>
-                    Something went wrong. Try again or DM me on Instagram.
-                  </p>
-                )}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="rounded-full py-3.5 font-body font-semibold text-sm tracking-wide transition-all duration-200 hover:scale-105 hover:shadow-2xl mt-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="instagram" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
+                  Instagram Handle
+                </label>
+                <input
+                  id="instagram"
+                  type="text"
+                  name="instagram"
+                  value={form.instagram}
+                  onChange={handleChange}
+                  placeholder="@yourhandle"
+                  className="rounded-xl px-4 py-3 font-body text-sm transition-all"
                   style={{
-                    background: "linear-gradient(135deg, #C4B5E8, #8B7AC8)",
-                    color: "#4a3065",
+                    background: "rgba(255,255,255,0.1)",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    color: "#F2EEFF",
                   }}
-                >
-                  {loading ? "Sending…" : "Book Now ✧"}
-                </button>
-              </form>
-            )}
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="service" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
+                  Service
+                </label>
+                <div className="relative">
+                  <select
+                    id="service"
+                    name="service"
+                    value={form.service}
+                    onChange={handleChange}
+                    required
+                    className="w-full rounded-xl px-4 py-3 pr-10 font-body text-sm transition-all"
+                    style={{
+                      background: "rgba(255,255,255,0.12)",
+                      border: "1px solid rgba(255,255,255,0.15)",
+                      color: form.service ? "#F2EEFF" : "rgba(255,255,255,0.45)",
+                    }}
+                  >
+                    <option value="" disabled>Select a service</option>
+                    <option value="single">Single Crystal</option>
+                    <option value="star-circle">Star &amp; Circle</option>
+                    <option value="crystal-line">Crystal Line</option>
+                    <option value="mock-braces">Mock Braces</option>
+                    <option value="gold-charm">Gold Charm</option>
+                    <option value="freestyle">Freestyle (5–6 crystals · $80)</option>
+                    <option value="custom">Custom / Not Sure</option>
+                  </select>
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs"
+                    style={{ color: "rgba(212,198,240,0.5)" }}
+                  >
+                    ▾
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="message" className="font-body text-xs tracking-wide uppercase" style={{ color: "rgba(212,198,240,0.7)" }}>
+                  Message (optional)
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  rows={3}
+                  placeholder="Inspo, questions, or anything you want me to know..."
+                  className="rounded-xl px-4 py-3 font-body text-sm transition-all resize-none"
+                  style={{
+                    background: "rgba(255,255,255,0.1)",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    color: "#F2EEFF",
+                  }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="rounded-full py-4 font-body font-semibold text-sm tracking-wide transition-all duration-200 hover:scale-105 hover:shadow-2xl mt-2 glow"
+                style={{
+                  background: "linear-gradient(135deg, #C4B5E8, #8B7AC8)",
+                  color: "#4a3065",
+                }}
+              >
+                Book Now ✧
+              </button>
+            </form>
           </div>
 
           {/* Info sidebar */}

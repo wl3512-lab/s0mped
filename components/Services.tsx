@@ -21,7 +21,7 @@ export default function Services() {
           </p>
           <h2
             className="reveal-heading font-script mb-4"
-            style={{ fontSize: "clamp(3.5rem, 9vw, 6.5rem)", color: "#3D2660", lineHeight: 1 }}
+            style={{ fontSize: "clamp(4rem, 11vw, 8rem)", color: "#3D2660", lineHeight: 1 }}
           >
             services
           </h2>
@@ -35,12 +35,12 @@ export default function Services() {
             }}
           >
             <div className="text-center">
-              <span className="font-display font-light" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", color: "#F2EEFF", lineHeight: 1 }}>$55</span>
+              <span className="font-display font-light" style={{ fontSize: "clamp(3.5rem, 7vw, 5.5rem)", color: "#F2EEFF", lineHeight: 1 }}>$55</span>
               <p className="font-body text-[10px] mt-2 tracking-widest uppercase" style={{ color: "rgba(196,181,232,0.6)" }}>base price</p>
             </div>
             <span className="font-display font-light text-3xl" style={{ color: "rgba(196,181,232,0.3)" }}>+</span>
             <div className="text-center">
-              <span className="font-display font-light" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", color: "#F2EEFF", lineHeight: 1 }}>$10</span>
+              <span className="font-display font-light" style={{ fontSize: "clamp(3.5rem, 7vw, 5.5rem)", color: "#F2EEFF", lineHeight: 1 }}>$10</span>
               <p className="font-body text-[10px] mt-2 tracking-widest uppercase" style={{ color: "rgba(196,181,232,0.6)" }}>per extra gem</p>
             </div>
             <span className="font-display font-light text-3xl hidden sm:block" style={{ color: "rgba(196,181,232,0.3)" }}>=</span>

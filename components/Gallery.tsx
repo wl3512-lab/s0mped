@@ -76,7 +76,7 @@ export default function Gallery() {
             </p>
             <h2
               className="reveal-heading font-script mb-4"
-              style={{ fontSize: "clamp(3.5rem, 12vw, 6rem)", color: "#3D2660", lineHeight: 1 }}
+              style={{ fontSize: "clamp(4rem, 14vw, 7rem)", color: "#3D2660", lineHeight: 1 }}
             >
               work
             </h2>
@@ -88,7 +88,7 @@ export default function Gallery() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-medium transition-all hover:scale-105"
-              style={{ background: "rgba(196,181,232,0.15)", color: "#6B5A9A", border: "1px solid rgba(196,181,232,0.35)" }}
+              style={{ background: "rgba(196,181,232,0.18)", color: "#3D2660", border: "1px solid rgba(196,181,232,0.45)" }}
             >
               @s0mped →
             </a>
@@ -115,7 +115,7 @@ export default function Gallery() {
             </p>
             <h2
               className="reveal-heading font-script mb-5"
-              style={{ fontSize: "clamp(3.5rem, 8vw, 7rem)", color: "#3D2660", lineHeight: 1 }}
+              style={{ fontSize: "clamp(4.5rem, 10vw, 9.5rem)", color: "#3D2660", lineHeight: 1 }}
             >
               work
             </h2>
@@ -131,9 +131,9 @@ export default function Gallery() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-medium transition-all hover:scale-105 hover:opacity-90"
               style={{
-                background: "rgba(196,181,232,0.15)",
-                color: "#6B5A9A",
-                border: "1px solid rgba(196,181,232,0.35)",
+                background: "rgba(196,181,232,0.18)",
+                color: "#3D2660",
+                border: "1px solid rgba(196,181,232,0.45)",
               }}
             >
               <InstagramIcon />
