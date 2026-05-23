@@ -16,11 +16,14 @@ function useReducedMotion(): boolean {
 
 /* Prismatic diamond gems scattered around the centered logo */
 const DIAMONDS = [
-  { cls: "loading-diamond-1", w: 20, h: 20, top: "28%",  left: "14%",  opacity: 0.75 },
-  { cls: "loading-diamond-2", w: 13, h: 13, top: "20%",  right: "18%", opacity: 0.6  },
-  { cls: "loading-diamond-3", w: 24, h: 24, top: "46%",  left: "8%",   opacity: 0.65 },
-  { cls: "loading-diamond-4", w: 11, h: 11, top: "58%",  right: "12%", opacity: 0.48 },
-  { cls: "loading-diamond-5", w: 16, h: 16, bottom: "26%", left: "24%", opacity: 0.55 },
+  { cls: "loading-diamond-1", w: 50, h: 50, top: "22%",   left: "9%",    opacity: 1   },
+  { cls: "loading-diamond-2", w: 30, h: 30, top: "15%",   right: "14%",  opacity: 0.9 },
+  { cls: "loading-diamond-3", w: 56, h: 56, top: "48%",   left: "5%",    opacity: 0.95},
+  { cls: "loading-diamond-4", w: 24, h: 24, top: "62%",   right: "7%",   opacity: 0.8 },
+  { cls: "loading-diamond-5", w: 40, h: 40, bottom: "20%",left: "18%",   opacity: 0.9 },
+  { cls: "loading-diamond-6", w: 20, h: 20, top: "34%",   right: "21%",  opacity: 0.75},
+  { cls: "loading-diamond-7", w: 46, h: 46, bottom: "16%",right: "14%",  opacity: 0.9 },
+  { cls: "loading-diamond-8", w: 16, h: 16, top: "74%",   left: "40%",   opacity: 0.7 },
 ] as const;
 
 export default function LoadingScreen() {

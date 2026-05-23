@@ -240,37 +240,46 @@ body {
   inherits: false;
 }
 
-/* Logo: horizontal navette clip-path (matches the gem type) expands to full
-   rect, while blur + hue-rotate simulate liquid-crystal solidifying */
+/* Logo: starts as a tiny tight gem point at center, expands into full wordmark.
+   blur + hue-rotate + brightness simulate molten crystal solidifying. */
 @keyframes crystal-form {
   0% {
     opacity: 0;
-    filter: blur(10px) hue-rotate(28deg) saturate(1.7);
+    filter: blur(14px) hue-rotate(35deg) saturate(2) brightness(1.6);
+    /* Tiny navette — barely a sliver at the logo center */
     clip-path: polygon(
-      4% 50%,  10% 28%, 22% 12%, 38%  5%,
-      50%  3%, 62%  5%, 78% 12%, 90% 28%,
-      96% 50%, 90% 72%, 78% 88%, 62% 95%,
-      50% 97%, 38% 95%, 22% 88%, 10% 72%
+      43% 48%, 46% 44%, 50% 42%, 54% 44%, 57% 48%,
+      54% 52%, 50% 54%, 46% 52%
     );
   }
-  38% {
-    opacity: 0.74;
-    filter: blur(3.5px) hue-rotate(8deg) saturate(1.15);
+  25% {
+    opacity: 0.55;
+    filter: blur(8px) hue-rotate(20deg) saturate(1.5) brightness(1.2);
     clip-path: polygon(
-      0% 38%, 8% 12%, 18%  4%, 50%  0%,
-      82%  4%, 92% 12%, 100% 38%,
-      100% 62%, 92% 88%, 82% 96%, 50% 100%,
-      18% 96%,  8% 88%,  0% 62%
+      20% 50%, 28% 30%, 38% 16%, 50% 10%,
+      62% 16%, 72% 30%, 80% 50%,
+      72% 70%, 62% 84%, 50% 90%,
+      38% 84%, 28% 70%
     );
   }
-  70% {
-    opacity: 0.94;
-    filter: blur(0.8px) hue-rotate(0deg) saturate(1);
-    clip-path: polygon(0% 4%, 4% 0%, 96% 0%, 100% 4%, 100% 96%, 96% 100%, 4% 100%, 0% 96%);
+  55% {
+    opacity: 0.82;
+    filter: blur(3px) hue-rotate(8deg) saturate(1.15) brightness(1);
+    clip-path: polygon(
+      2% 40%, 10% 14%, 22%  4%, 50%  0%,
+      78%  4%, 90% 14%, 98% 40%,
+      98% 60%, 90% 86%, 78% 96%, 50% 100%,
+      22% 96%, 10% 86%,  2% 60%
+    );
+  }
+  80% {
+    opacity: 0.96;
+    filter: blur(0.5px) hue-rotate(0deg) saturate(1) brightness(1);
+    clip-path: polygon(0% 3%, 3% 0%, 97% 0%, 100% 3%, 100% 97%, 97% 100%, 3% 100%, 0% 97%);
   }
   100% {
     opacity: 1;
-    filter: blur(0px) hue-rotate(0deg) saturate(1);
+    filter: blur(0px) hue-rotate(0deg) saturate(1) brightness(1);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   }
 }
@@ -337,14 +346,19 @@ body {
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
   background: conic-gradient(
     from var(--gem-angle),
-    #C4B5E8 0%,
-    #b2d8f2 14%,
-    #f0b8d4 28%,
-    #b8f0c8 43%,
-    #f0e6b2 57%,
-    #d4b4f2 72%,
+    #ffffff 0%,
+    #C4B5E8 8%,
+    #b2d8f2 18%,
+    #ffffff 26%,
+    #f0b8d4 36%,
+    #b8f0c8 47%,
+    #ffffff 54%,
+    #f0e6b2 63%,
+    #d4b4f2 76%,
+    #ffffff 86%,
     #C4B5E8 100%
   );
+  filter: drop-shadow(0 0 12px rgba(196,181,232,0.8)) drop-shadow(0 0 5px rgba(255,255,255,0.6));
   opacity: 0;
 }
 
@@ -378,6 +392,24 @@ body {
       gem-angle-spin 3s linear infinite,
       diamond-appear 0.44s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both,
       diamond-float-b 6s ease-in-out 0.99s infinite;
+  }
+  .loading-diamond-6 {
+    animation:
+      gem-angle-spin 2.5s linear infinite,
+      diamond-appear 0.44s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both,
+      diamond-float-c 5.1s ease-in-out 0.56s infinite;
+  }
+  .loading-diamond-7 {
+    animation:
+      gem-angle-spin 4s linear infinite,
+      diamond-appear 0.44s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both,
+      diamond-float-a 4.4s ease-in-out 0.79s infinite;
+  }
+  .loading-diamond-8 {
+    animation:
+      gem-angle-spin 3.5s linear infinite,
+      diamond-appear 0.44s cubic-bezier(0.22, 1, 0.36, 1) 0.62s both,
+      diamond-float-b 5.8s ease-in-out 1.1s infinite;
   }
 }
 
