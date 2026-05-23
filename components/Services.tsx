@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Services() {
   return (
     <section
@@ -205,13 +207,24 @@ export default function Services() {
 
         {/* Premium — full width */}
         <div
-          className="rounded-3xl p-7 flex flex-col sm:flex-row sm:items-center gap-6 transition-all duration-300 hover:scale-[1.01]"
+          className="rounded-3xl overflow-hidden flex flex-col sm:flex-row sm:items-stretch transition-all duration-300 hover:scale-[1.01]"
           style={{
             background: "#F2EEFF",
             border: "1px solid rgba(196,181,232,0.3)",
             boxShadow: "0 2px 16px rgba(61,38,96,0.06)",
           }}
         >
+          {/* Example image */}
+          <div className="relative w-full sm:w-48 h-48 sm:h-auto shrink-0">
+            <Image
+              src="/silver.png"
+              alt="18k gold and white gold tooth gem charm example"
+              fill
+              className="object-cover"
+              sizes="(max-width: 640px) 100vw, 192px"
+            />
+          </div>
+          <div className="p-7 flex flex-col sm:flex-row sm:items-center gap-6 flex-1">
           <div className="text-3xl shrink-0" style={{ color: "#9B8FD4" }}>⬡</div>
           <div className="flex-1">
             <div className="flex items-start justify-between gap-2 mb-2">
@@ -251,6 +264,7 @@ export default function Services() {
               Or use the form →
             </a>
           </div>
+          </div>{/* end inner flex wrapper */}
         </div>
 
         {/* Footer notes */}
