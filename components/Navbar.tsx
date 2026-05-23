@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
@@ -12,12 +12,19 @@ const links = [
   { label: "Book", href: "#book" },
 ];
 
+const careLinks = [
+  { label: "FAQ", href: "#faq" },
+  { label: "Aftercare", href: "#aftercare" },
+];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [careOpen, setCareOpen] = useState(false);
   const [onDark, setOnDark] = useState(true);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const careRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     function update() {
@@ -31,8 +38,21 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", update);
   }, []);
 
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (careRef.current && !careRef.current.contains(e.target as Node)) {
+        setCareOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const textColor = onDark ? "#C4B5E8" : "#3D2660";
-  const logoColor = onDark ? "#F2EEFF" : "#3D2660";
+
+  function resolveHref(href: string) {
+    return !isHome && href.startsWith("#") ? `/${href}` : href;
+  }
 
   return (
     <nav
@@ -58,20 +78,68 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <ul className="hidden md:flex items-center gap-8">
-          {links.map((l) => {
-            const href = !isHome && l.href.startsWith("#") ? `/${l.href}` : l.href;
-            return (
-              <li key={l.href}>
-                <a
-                  href={href}
-                  className="font-body text-xs tracking-widest uppercase transition-opacity duration-200 hover:opacity-60"
-                  style={{ color: textColor }}
-                >
-                  {l.label}
-                </a>
-              </li>
-            );
-          })}
+          {links.map((l) => (
+            <li key={l.href}>
+              <a
+                href={resolveHref(l.href)}
+                className="font-body text-xs tracking-widest uppercase transition-opacity duration-200 hover:opacity-60"
+                style={{ color: textColor }}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+
+          {/* Care dropdown */}
+          <li ref={careRef} className="relative">
+            <button
+              onClick={() => setCareOpen((o) => !o)}
+              aria-expanded={careOpen}
+              aria-haspopup="true"
+              className="flex items-center gap-1 font-body text-xs tracking-widest uppercase transition-opacity duration-200 hover:opacity-60"
+              style={{ color: textColor, background: "none", border: "none", cursor: "pointer" }}
+            >
+              Care
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 10 10"
+                fill="none"
+                style={{
+                  transition: "transform 0.2s",
+                  transform: careOpen ? "rotate(180deg)" : "rotate(0deg)",
+                }}
+              >
+                <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+            {careOpen && (
+              <div
+                className="absolute top-full right-0 mt-3 rounded-2xl py-2 min-w-[160px] shadow-lg"
+                style={{
+                  background: onDark ? "rgba(26,15,46,0.92)" : "rgba(242,238,255,0.96)",
+                  border: "1px solid rgba(196,181,232,0.2)",
+                  backdropFilter: "blur(16px)",
+                  WebkitBackdropFilter: "blur(16px)",
+                }}
+              >
+                {careLinks.map((cl) => (
+                  <a
+                    key={cl.href}
+                    href={resolveHref(cl.href)}
+                    onClick={() => setCareOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2.5 font-body text-xs tracking-widest uppercase transition-opacity hover:opacity-60"
+                    style={{ color: onDark ? "#C4B5E8" : "#3D2660" }}
+                  >
+                    <span aria-hidden="true" style={{ fontSize: "0.6rem", opacity: 0.6 }}>✧</span>
+                    {cl.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </li>
+
           <li>
             <a
               href="https://www.instagram.com/s0mped/"
@@ -119,21 +187,39 @@ export default function Navbar() {
       {menuOpen && (
         <div id="mobile-menu" className="md:hidden glass mt-3 mx-2 rounded-2xl p-6">
           <ul className="flex flex-col gap-5">
-            {links.map((l) => {
-              const href = !isHome && l.href.startsWith("#") ? `/${l.href}` : l.href;
-              return (
-                <li key={l.href}>
+            {links.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={resolveHref(l.href)}
+                  onClick={() => setMenuOpen(false)}
+                  className="font-display text-xl tracking-widest uppercase block"
+                  style={{ color: "#3D2660" }}
+                >
+                  ✧ {l.label}
+                </a>
+              </li>
+            ))}
+
+            {/* Care sub-links inline in mobile */}
+            <li>
+              <p className="font-body text-[10px] tracking-widest uppercase mb-3" style={{ color: "rgba(61,38,96,0.45)" }}>
+                Care
+              </p>
+              <div className="flex flex-col gap-3 pl-1">
+                {careLinks.map((cl) => (
                   <a
-                    href={href}
+                    key={cl.href}
+                    href={resolveHref(cl.href)}
                     onClick={() => setMenuOpen(false)}
                     className="font-display text-xl tracking-widest uppercase block"
                     style={{ color: "#3D2660" }}
                   >
-                    ✧ {l.label}
+                    ✧ {cl.label}
                   </a>
-                </li>
-              );
-            })}
+                ))}
+              </div>
+            </li>
+
             <li>
               <a
                 href="https://www.instagram.com/s0mped/"

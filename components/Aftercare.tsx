@@ -53,7 +53,7 @@ export default function Aftercare() {
 
   return (
     <section
-      id="aftercare"
+      id="care"
       className="py-28 px-6 relative overflow-hidden"
       style={{ background: "#1A0F2E" }}
     >
@@ -81,6 +81,8 @@ export default function Aftercare() {
         <div className="grid md:grid-cols-2 gap-10">
           {/* FAQ accordion */}
           <div className="flex flex-col gap-2">
+            {/* Anchor target for FAQ nav link */}
+            <div id="faq" style={{ scrollMarginTop: "80px" }} />
             <p className="font-body text-xs tracking-widest uppercase mb-4" style={{ color: "rgba(196,181,232,0.65)" }}>
               Questions
             </p>
@@ -131,6 +133,8 @@ export default function Aftercare() {
 
           {/* Aftercare checklist */}
           <div>
+            {/* Anchor target for Aftercare nav link */}
+            <div id="aftercare" style={{ scrollMarginTop: "80px" }} />
             <p className="font-body text-xs tracking-widest uppercase mb-4" style={{ color: "rgba(196,181,232,0.65)" }}>
               Aftercare
             </p>
