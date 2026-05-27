@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#F2EEFF"/>
-  <text
-    x="32"
-    y="40"
-    text-anchor="middle"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="40"
-    fill="#3D2660"
-  >✧</text>
+  <rect width="64" height="64" rx="14" fill="#C8DFF4"/>
+  <!-- Outer frame top + right -->
+  <rect x="8" y="8" width="48" height="8" fill="#5BAEDE"/>
+  <rect x="52" y="8" width="8" height="48" fill="#5BAEDE"/>
+  <!-- Inner frame bottom-right notch -->
+  <rect x="30" y="30" width="8" height="22" fill="#5BAEDE"/>
+  <rect x="8" y="52" width="52" height="8" fill="#5BAEDE"/>
+  <!-- Left column fill -->
+  <rect x="8" y="16" width="22" height="44" fill="#5BAEDE"/>
 </svg>
