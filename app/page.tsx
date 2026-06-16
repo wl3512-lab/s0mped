@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Gallery from "@/components/Gallery";
+import StonesShowcase from "@/components/StonesShowcase";
 import Services from "@/components/Services";
 import InStock from "@/components/InStock";
 import GemSuggestion from "@/components/GemSuggestion";
@@ -15,6 +16,7 @@ export default function Home() {
       <main>
         <Hero />
         <Gallery />
+        <StonesShowcase />
         <Services />
         <InStock />
         <GemSuggestion />

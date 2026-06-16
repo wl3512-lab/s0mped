@@ -8,7 +8,6 @@ const links = [
   { label: "Gallery", href: "#gallery" },
   { label: "Gems", href: "#in-stock" },
   { label: "Services", href: "#services" },
-  { label: "Suggest", href: "#suggest" },
   { label: "About", href: "/about" },
   { label: "Book", href: "#book" },
 ];
@@ -67,7 +66,7 @@ export default function Navbar() {
         <a href="/" className="flex items-center">
           <Image
             src="/somped-vector.svg"
-            alt="s0mped"
+            alt="sompednyc"
             width={120}
             height={48}
             className="h-10 w-auto transition-all duration-300"
@@ -90,6 +89,17 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+
+          {/* Suggest modal trigger */}
+          <li>
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("open-gem-suggestion"))}
+              className="font-body text-xs tracking-widest uppercase transition-opacity duration-200 hover:opacity-60"
+              style={{ color: textColor, background: "none", border: "none", cursor: "pointer", padding: 0 }}
+            >
+              Suggest
+            </button>
+          </li>
 
           {/* Care dropdown */}
           <li ref={careRef} className="relative">
@@ -143,7 +153,7 @@ export default function Navbar() {
 
           <li>
             <a
-              href="https://www.instagram.com/s0mped/"
+              href="https://www.instagram.com/sompednyc/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 rounded-full px-5 py-2 text-xs font-body font-semibold tracking-wide transition-all duration-200 hover:scale-105 hover:shadow-lg"
@@ -156,7 +166,7 @@ export default function Navbar() {
               }}
             >
               <InstagramIcon />
-              @s0mped
+              @sompednyc
             </a>
           </li>
         </ul>
@@ -201,6 +211,20 @@ export default function Navbar() {
               </li>
             ))}
 
+            {/* Suggest modal trigger */}
+            <li>
+              <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  window.dispatchEvent(new CustomEvent("open-gem-suggestion"));
+                }}
+                className="font-display text-xl tracking-widest uppercase block"
+                style={{ color: "#3D2660", background: "none", border: "none", cursor: "pointer", padding: 0 }}
+              >
+                ✧ Suggest
+              </button>
+            </li>
+
             {/* Care sub-links inline in mobile */}
             <li>
               <p className="font-body text-[10px] tracking-widest uppercase mb-3" style={{ color: "rgba(61,38,96,0.45)" }}>
@@ -223,7 +247,7 @@ export default function Navbar() {
 
             <li>
               <a
-                href="https://www.instagram.com/s0mped/"
+                href="https://www.instagram.com/sompednyc/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body font-semibold text-xs tracking-wide"
@@ -233,7 +257,7 @@ export default function Navbar() {
                 }}
               >
                 <InstagramIcon />
-                @s0mped on Instagram
+                @sompednyc on Instagram
               </a>
             </li>
           </ul>

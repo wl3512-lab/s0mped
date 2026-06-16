@@ -84,13 +84,13 @@ export default function Gallery() {
               Real clients. No filters. Full portfolio on Instagram.
             </p>
             <a
-              href="https://www.instagram.com/s0mped/"
+              href="https://www.instagram.com/sompednyc/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-medium transition-all hover:scale-105"
               style={{ background: "rgba(196,181,232,0.18)", color: "#3D2660", border: "1px solid rgba(196,181,232,0.45)" }}
             >
-              @s0mped →
+              @sompednyc →
             </a>
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -126,7 +126,7 @@ export default function Gallery() {
               Real clients. No filters.<br />Full portfolio on Instagram.
             </p>
             <a
-              href="https://www.instagram.com/s0mped/"
+              href="https://www.instagram.com/sompednyc/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-body text-sm font-medium transition-all hover:scale-105 hover:opacity-90"
@@ -137,7 +137,7 @@ export default function Gallery() {
               }}
             >
               <InstagramIcon />
-              @s0mped
+              @sompednyc
             </a>
           </div>
 

@@ -3,8 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "About | s0mped",
-  description: "Meet the artist behind s0mped, NYC's tooth gem specialist using Swarovski crystals and dental-grade adhesive.",
+  title: "About | sompednyc",
+  description: "Meet the artist behind sompednyc, NYC's tooth gem specialist using Swarovski crystals and dental-grade adhesive.",
 };
 
 export default function AboutPage() {

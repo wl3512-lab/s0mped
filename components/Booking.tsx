@@ -246,7 +246,7 @@ export default function Booking() {
 
             {/* DM CTA */}
             <a
-              href="https://www.instagram.com/s0mped/"
+              href="https://www.instagram.com/sompednyc/"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-2xl p-5 flex items-center gap-3 transition-all duration-200 hover:scale-[1.02]"
@@ -261,7 +261,7 @@ export default function Booking() {
                   Prefer to DM?
                 </p>
                 <p className="font-body font-light text-xs" style={{ color: "rgba(212,198,240,0.7)" }}>
-                  Slide into @s0mped on Instagram
+                  Slide into @sompednyc on Instagram
                 </p>
               </div>
             </a>

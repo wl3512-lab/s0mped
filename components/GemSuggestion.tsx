@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CONTACT_EMAIL = "wl3512@nyu.edu";
 
 export default function GemSuggestion() {
+  const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState({
     name: "",
     instagram: "",
@@ -13,13 +14,28 @@ export default function GemSuggestion() {
     notes: "",
   });
 
+  useEffect(() => {
+    function handleOpen() { setIsOpen(true); }
+    window.addEventListener("open-gem-suggestion", handleOpen);
+    return () => window.removeEventListener("open-gem-suggestion", handleOpen);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const subject = encodeURIComponent("Gem Suggestion");
     const lines = [
@@ -34,13 +50,30 @@ export default function GemSuggestion() {
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${encodeURIComponent(lines)}`;
   }
 
+  if (!isOpen) return null;
+
   return (
-    <section
-      id="suggest"
-      className="py-16 px-6"
-      style={{ background: "#FAF8FF", borderTop: "1px solid rgba(196,181,232,0.18)" }}
+    <div
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+      style={{ background: "rgba(26,15,46,0.6)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }}
+      onClick={(e) => { if (e.target === e.currentTarget) setIsOpen(false); }}
     >
-      <div className="max-w-2xl mx-auto">
+      <div
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl p-8"
+        style={{ background: "#FAF8FF", boxShadow: "0 8px 48px rgba(61,38,96,0.22)" }}
+      >
+        {/* Close button */}
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-5 right-5 flex items-center justify-center w-8 h-8 rounded-full transition-all hover:scale-110"
+          style={{ background: "rgba(196,181,232,0.2)", color: "#3D2660" }}
+          aria-label="Close"
+        >
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+        </button>
+
         {/* Header */}
         <div className="mb-8">
           <p
@@ -168,6 +201,6 @@ export default function GemSuggestion() {
           </button>
         </form>
       </div>
-    </section>
+    </div>
   );
 }

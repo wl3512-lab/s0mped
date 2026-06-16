@@ -141,7 +141,7 @@ export default function Services() {
             </p>
           </div>
           <a
-            href="https://www.instagram.com/s0mped/"
+            href="https://www.instagram.com/sompednyc/"
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 rounded-full px-5 py-2.5 font-body text-xs font-semibold tracking-wide transition-all hover:scale-105"
@@ -231,12 +231,12 @@ export default function Services() {
               </span>
             </div>
             <p className="font-body font-light text-sm leading-relaxed" style={{ color: "#6B5A9A" }}>
-              Premium solid 18k gold or white gold charms. Preorder required: DM @s0mped to reserve yours before booking.
+              Premium solid 18k gold or white gold charms. Preorder required: DM @sompednyc to reserve yours before booking.
             </p>
           </div>
           <div className="shrink-0 flex flex-col gap-2 items-center sm:items-end">
             <a
-              href="https://www.instagram.com/s0mped/"
+              href="https://www.instagram.com/sompednyc/"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full px-5 py-2.5 font-body text-xs font-semibold tracking-wide transition-all hover:scale-105 w-full text-center"

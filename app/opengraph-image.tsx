@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "s0mped | Tooth Gem Artist · NYC";
+export const alt = "sompednyc | Tooth Gem Artist · NYC";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

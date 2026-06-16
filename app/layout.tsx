@@ -28,17 +28,17 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "s0mped | Tooth Gem Artist",
+  title: "sompednyc | Tooth Gem Artist",
   description:
-    "Luxury tooth gems applied with care. Custom Swarovski crystal and gold tooth jewelry by @s0mped.",
-  keywords: ["tooth gems", "tooth jewelry", "Swarovski", "dental gems", "s0mped"],
+    "Luxury tooth gems applied with care. Custom Swarovski crystal and gold tooth jewelry by @sompednyc.",
+  keywords: ["tooth gems", "tooth jewelry", "Swarovski", "dental gems", "sompednyc"],
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     shortcut: "/icon.svg",
     apple: "/icon.svg",
   },
   openGraph: {
-    title: "s0mped | Tooth Gem Artist",
+    title: "sompednyc | Tooth Gem Artist",
     description: "Luxury tooth gems applied with care. Book your appointment.",
     type: "website",
   },

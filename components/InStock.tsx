@@ -417,13 +417,13 @@ export default function InStock() {
           <p className="font-body text-xs" style={{ color: "rgba(196,181,232,0.4)" }}>
             Inventory updated regularly. DM{" "}
             <a
-              href="https://www.instagram.com/s0mped/"
+              href="https://www.instagram.com/sompednyc/"
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-2 hover:opacity-80"
               style={{ color: "rgba(196,181,232,0.6)" }}
             >
-              @s0mped
+              @sompednyc
             </a>{" "}
             to confirm availability or request a gem not listed.
           </p>

@@ -18,7 +18,7 @@ export default function Footer() {
           <div>
             <Image
               src="/somped-vector.svg"
-              alt="s0mped"
+              alt="sompednyc"
               width={160}
               height={64}
               className="h-12 w-auto mb-3"
@@ -32,14 +32,14 @@ export default function Footer() {
               Luxury tooth gems applied safely and beautifully. Certified ✧ 2024.
             </p>
             <a
-              href="https://www.instagram.com/s0mped/"
+              href="https://www.instagram.com/sompednyc/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-body font-medium transition-opacity hover:opacity-80"
               style={{ color: "#C4B5E8" }}
             >
               <InstagramIcon />
-              @s0mped
+              @sompednyc
             </a>
           </div>
 
@@ -109,7 +109,7 @@ export default function Footer() {
             color: "rgba(196, 181, 232, 0.55)",
           }}
         >
-          <span>© {new Date().getFullYear()} s0mped. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} sompednyc. All rights reserved.</span>
           <span aria-hidden="true" className="font-script text-xl" style={{ color: "rgba(196, 181, 232, 0.2)" }}>
             ✧
           </span>

@@ -56,7 +56,7 @@ export default function Hero() {
         {/* Logo */}
         <Image
           src="/somped-vector.svg"
-          alt="s0mped"
+          alt="sompednyc"
           width={520}
           height={180}
           className="w-72 sm:w-88 md:w-[28rem] lg:w-[38rem] xl:w-[44rem] h-auto mb-7"
@@ -87,7 +87,7 @@ export default function Hero() {
             Book Now ✧
           </a>
           <a
-            href="https://www.instagram.com/s0mped/"
+            href="https://www.instagram.com/sompednyc/"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto rounded-full px-9 py-4 font-body font-medium text-sm tracking-wide text-center transition-all duration-200 hover:scale-105"
