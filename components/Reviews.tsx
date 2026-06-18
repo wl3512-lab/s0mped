@@ -89,7 +89,8 @@ export default function Reviews() {
       .order("created_at", { ascending: false })
       .limit(50);
     if (error || !data || data.length === 0) return; // keep seeds if none yet
-    setReviews(data as Review[]);
+    // Show approved submissions AND keep the original curated testimonials.
+    setReviews([...(data as Review[]), ...SEED_REVIEWS]);
   }, []);
 
   // Initial fetch + near-live polling.
