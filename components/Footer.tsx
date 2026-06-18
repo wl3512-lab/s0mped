@@ -57,7 +57,8 @@ export default function Footer() {
                 { label: "Services", href: "#services" },
                 { label: "FAQ", href: "#faq" },
                 { label: "Aftercare", href: "#aftercare" },
-                { label: "Book", href: "#book" },
+                { label: "Book", href: "/book" },
+                { label: "Reviews", href: "/reviews" },
                 { label: "About", href: "/about" },
               ].map((item) => (
                 <li key={item.label}>

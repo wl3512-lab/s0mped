@@ -6,7 +6,6 @@ import Services from "@/components/Services";
 import InStock from "@/components/InStock";
 import GemSuggestion from "@/components/GemSuggestion";
 import Aftercare from "@/components/Aftercare";
-import Booking from "@/components/Booking";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -21,7 +20,6 @@ export default function Home() {
         <InStock />
         <GemSuggestion />
         <Aftercare />
-        <Booking />
       </main>
       <Footer />
     </>

@@ -9,10 +9,11 @@ const links = [
   { label: "Gems", href: "#in-stock" },
   { label: "Services", href: "#services" },
   { label: "About", href: "/about" },
-  { label: "Book", href: "#book" },
+  { label: "Book", href: "/book" },
 ];
 
 const careLinks = [
+  { label: "Reviews", href: "/reviews" },
   { label: "FAQ", href: "#faq" },
   { label: "Aftercare", href: "#aftercare" },
 ];

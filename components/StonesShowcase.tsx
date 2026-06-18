@@ -8,127 +8,52 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-type Stone = {
+type SetLook = {
   src: string;
   name: string;
-  cut: string;
+  tag: string;
   note: string;
 };
 
-const stones: Stone[] = [
-  { src: "/gem-round-ab.jpg", name: "Aurora", cut: "Round · AB", note: "the candlelight catcher — throws every colour" },
-  { src: "/gem-navette-clear.jpg", name: "Navette", cut: "Marquise · Clear", note: "elongates the tooth, pure white fire" },
-  { src: "/gem-star.jpg", name: "Star", cut: "Five-point", note: "the signature — a little wish on enamel" },
-  { src: "/gem-moon.jpg", name: "Crescent", cut: "Moon", note: "soft, celestial, worn close to the canine" },
-  { src: "/gem-fang.jpg", name: "Fang", cut: "Teardrop", note: "edge with intent — sharp where it counts" },
-  { src: "/gem-round-purple.jpg", name: "Amethyst", cut: "Round · Violet", note: "house colour, deep committed purple" },
+const looks: SetLook[] = [
+  {
+    src: "/set-cluster.jpg",
+    name: "The Cluster",
+    tag: "Mixed cuts · upper smile",
+    note: "round, cross, star & marquise scattered across the front — a constellation that throws light from every angle",
+  },
+  {
+    src: "/set-dagger.jpg",
+    name: "The Dagger",
+    tag: "Single statement",
+    note: "one bold dagger with a ruby-and-clear accent — edge with intent, made to be noticed",
+  },
+  {
+    src: "/set-row.jpg",
+    name: "The Row",
+    tag: "Lower line · all kite",
+    note: "a full row of kite-cut crystals along the bottom teeth — pure white fire, end to end",
+  },
 ];
 
 export default function StonesShowcase() {
   const sectionRef = useRef<HTMLElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      const mm = gsap.matchMedia();
-
-      // Full immersive horizontal scroll — only when motion is welcome.
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const track = trackRef.current!;
-        const viewport = viewportRef.current!;
-
-        // Lock the viewport so the only horizontal motion is GSAP-driven.
-        viewport.style.overflowX = "hidden";
-
-        const getDistance = () => track.scrollWidth - window.innerWidth;
-
-        // Drive the track left as the user scrolls down. ease:"none" keeps
-        // scroll position and horizontal position perfectly in sync.
-        const scrollTween = gsap.to(track, {
-          x: () => -getDistance(),
-          ease: "none",
+      // Gentle fade-up reveal as the looks scroll into view. Motion only.
+      gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from(".look-card", {
+          y: 48,
+          autoAlpha: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          stagger: 0.1,
           scrollTrigger: {
-            trigger: sectionRef.current,
-            pin: true,
-            scrub: 1,
-            start: "top top",
-            end: () => "+=" + getDistance(),
-            invalidateOnRefresh: true,
+            trigger: ".looks-grid",
+            start: "top 80%",
           },
         });
-
-        const panels = gsap.utils.toArray<HTMLElement>(".stone-panel");
-
-        panels.forEach((panel) => {
-          const img = panel.querySelector<HTMLElement>(".stone-img");
-          const caption = panel.querySelector<HTMLElement>(".stone-caption");
-
-          // Layered parallax: the stone drifts opposite the caption as each
-          // panel crosses the viewport, tied to the horizontal containerAnimation.
-          if (img) {
-            gsap.fromTo(
-              img,
-              { xPercent: 18, scale: 1.12 },
-              {
-                xPercent: -18,
-                scale: 1,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: panel,
-                  containerAnimation: scrollTween,
-                  start: "left right",
-                  end: "right left",
-                  scrub: true,
-                },
-              }
-            );
-          }
-
-          if (caption) {
-            gsap.fromTo(
-              caption,
-              { xPercent: -10, autoAlpha: 0.2 },
-              {
-                xPercent: 0,
-                autoAlpha: 1,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: panel,
-                  containerAnimation: scrollTween,
-                  start: "left 80%",
-                  end: "center center",
-                  scrub: true,
-                },
-              }
-            );
-          }
-        });
-
-        // Refresh once the gem images have decoded — their size affects layout.
-        const imgs = track.querySelectorAll("img");
-        let pending = imgs.length;
-        imgs.forEach((el) => {
-          if (el.complete) {
-            if (--pending === 0) ScrollTrigger.refresh();
-          } else {
-            el.addEventListener("load", () => {
-              if (--pending === 0) ScrollTrigger.refresh();
-            });
-          }
-        });
-
-        return () => {
-          viewport.style.overflowX = "";
-        };
-      });
-
-      // Reduced motion: native horizontal scroll, no pinning, no parallax.
-      mm.add("(prefers-reduced-motion: reduce)", () => {
-        viewportRef.current!.style.overflowX = "auto";
-        return () => {
-          if (viewportRef.current) viewportRef.current.style.overflowX = "";
-        };
       });
     },
     { scope: sectionRef }
@@ -138,123 +63,83 @@ export default function StonesShowcase() {
     <section
       ref={sectionRef}
       id="stones"
-      aria-label="The stones"
-      className="relative overflow-hidden"
+      aria-label="Sets and inspiration"
+      className="relative overflow-hidden px-6 py-24 sm:px-10 sm:py-32"
       style={{ background: "#1A0F2E" }}
     >
-      {/* Eyebrow / fixed label that sits over the pinned panels */}
-      <div className="pointer-events-none absolute top-8 left-6 z-20 sm:top-10 sm:left-10">
+      {/* Section header */}
+      <div className="mx-auto max-w-6xl text-center">
         <p
           className="font-body text-xs tracking-[0.3em] uppercase"
           style={{ color: "#9B8FD4" }}
         >
-          ✧ The Stones
+          ✧ Sets &amp; Inspo
         </p>
-        <p className="font-body text-xs mt-1" style={{ color: "rgba(196,181,232,0.5)" }}>
-          scroll to drift through the collection
+        <h2
+          className="font-script mt-4"
+          style={{ fontSize: "clamp(3rem, 9vw, 6rem)", color: "#F2EEFF", lineHeight: 0.95 }}
+        >
+          looks to steal
+        </h2>
+        <p
+          className="font-display italic mt-1"
+          style={{ fontSize: "clamp(1.25rem, 3vw, 2.25rem)", color: "#C4B5E8" }}
+        >
+          sets I can do for you
+        </p>
+        <p
+          className="font-body font-light mt-6 mx-auto max-w-sm text-sm leading-relaxed"
+          style={{ color: "#9B8FD4" }}
+        >
+          Bring a reference or borrow one of these — every set is fully custom.
         </p>
       </div>
 
-      <div ref={viewportRef} className="w-full">
-        <div
-          ref={trackRef}
-          className="flex flex-nowrap h-[100svh] will-change-transform"
-        >
-          {/* Intro panel */}
-          <div className="stone-panel relative flex h-full w-screen flex-shrink-0 flex-col items-center justify-center px-8 text-center">
-            <div className="iridescent twinkle mb-6 text-4xl" style={{ WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>
-              ✦
+      {/* Grid of inspo sets */}
+      <div className="looks-grid mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        {looks.map((look) => (
+          <article key={look.name} className="look-card group flex flex-col">
+            {/* The placement photo */}
+            <div
+              className="relative w-full overflow-hidden rounded-[24px]"
+              style={{
+                aspectRatio: "4 / 5",
+                boxShadow: "0 0 28px rgba(196,181,232,0.2), 0 0 56px rgba(196,181,232,0.08)",
+              }}
+            >
+              <Image
+                src={look.src}
+                alt={`${look.name} — ${look.tag} tooth gem set`}
+                fill
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+              <div className="iridescent absolute inset-0 mix-blend-soft-light opacity-25" />
             </div>
-            <h2
-              className="font-script"
-              style={{ fontSize: "clamp(3.5rem, 12vw, 9rem)", color: "#F2EEFF", lineHeight: 0.95 }}
-            >
-              every stone
-            </h2>
-            <p
-              className="font-display italic mt-2"
-              style={{ fontSize: "clamp(1.5rem, 4vw, 3rem)", color: "#C4B5E8" }}
-            >
-              has a personality
-            </p>
-            <p
-              className="font-body font-light mt-8 max-w-sm text-sm leading-relaxed"
-              style={{ color: "#9B8FD4" }}
-            >
-              Six cuts, infinite placements. Keep scrolling — they come to you.
-            </p>
-            <div className="mt-10 font-body text-xs tracking-widest" style={{ color: "rgba(196,181,232,0.6)" }}>
-              {stones.length} cuts →
-            </div>
-          </div>
 
-          {/* Stone panels */}
-          {stones.map((stone, i) => (
-            <article
-              key={stone.name}
-              className="stone-panel relative flex h-full w-screen flex-shrink-0 items-center justify-center px-8"
-            >
-              {/* Oversized index numeral, faint, for editorial depth */}
-              <span
-                className="font-display pointer-events-none absolute select-none"
-                style={{
-                  fontSize: "clamp(14rem, 40vw, 34rem)",
-                  color: "rgba(196,181,232,0.05)",
-                  lineHeight: 1,
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                }}
+            {/* Caption */}
+            <div className="mt-6 text-center sm:text-left">
+              <p
+                className="font-body text-xs tracking-[0.3em] uppercase mb-2"
+                style={{ color: "#9B8FD4" }}
               >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-
-              <div className="relative z-10 flex flex-col items-center gap-7 sm:flex-row sm:gap-12">
-                {/* The gem */}
-                <div
-                  className="stone-img relative overflow-hidden rounded-[24px]"
-                  style={{
-                    width: "min(72vw, 30rem)",
-                    aspectRatio: "1 / 1",
-                    boxShadow: "0 0 28px rgba(196,181,232,0.25), 0 0 56px rgba(196,181,232,0.1)",
-                  }}
-                >
-                  <Image
-                    src={stone.src}
-                    alt={`${stone.name} — ${stone.cut} tooth gem`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 72vw, 30rem"
-                    priority={i === 0}
-                  />
-                  <div className="iridescent absolute inset-0 mix-blend-soft-light opacity-30" />
-                </div>
-
-                {/* Caption */}
-                <div className="stone-caption max-w-xs text-center sm:text-left">
-                  <p
-                    className="font-body text-xs tracking-[0.3em] uppercase mb-3"
-                    style={{ color: "#9B8FD4" }}
-                  >
-                    {stone.cut}
-                  </p>
-                  <h3
-                    className="font-script"
-                    style={{ fontSize: "clamp(3rem, 8vw, 5.5rem)", color: "#F2EEFF", lineHeight: 1 }}
-                  >
-                    {stone.name}
-                  </h3>
-                  <p
-                    className="font-display italic mt-4 text-base leading-relaxed"
-                    style={{ color: "#C4B5E8" }}
-                  >
-                    {stone.note}
-                  </p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+                {look.tag}
+              </p>
+              <h3
+                className="font-script"
+                style={{ fontSize: "clamp(2.25rem, 4.5vw, 3rem)", color: "#F2EEFF", lineHeight: 1 }}
+              >
+                {look.name}
+              </h3>
+              <p
+                className="font-display italic mt-3 text-base leading-relaxed"
+                style={{ color: "#C4B5E8" }}
+              >
+                {look.note}
+              </p>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );

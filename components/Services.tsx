@@ -176,6 +176,12 @@ export default function Services() {
               description: "4-gem row = base $55 + 3 add-ons ($30). More gems, more sparkle; same flat rate per gem.",
             },
             {
+              icon: "✧✧✧✧✧✧",
+              name: "Mock Braces",
+              price: "$80",
+              description: "A row of crystals across your teeth for a playful “braces” look — no orthodontics, just sparkle. Fully removable.",
+            },
+            {
               icon: "✧✧✧✧✧",
               name: "Freestyle",
               price: "$80",
@@ -248,7 +254,7 @@ export default function Services() {
               DM to Preorder →
             </a>
             <a
-              href="#book"
+              href="/book"
               className="rounded-full px-5 py-2 font-body text-xs font-medium tracking-wide transition-all hover:scale-105 w-full text-center"
               style={{
                 background: "transparent",

@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     q: "How are the gems bonded?",
-    a: "I use a professional 2-in-1 self-etching primer and adhesive (combines both steps into one applicator) followed by Tetric EvoFlow, the same dental-grade light-cure composite used by orthodontists for braces. It&apos;s long-lasting, wear-resistant, and fully safe for enamel.",
+    a: "I use a professional 2-in-1 self-etching primer and adhesive (combines both steps into one applicator) followed by Tetric EvoFlow, the same dental-grade light-cure composite used by orthodontists for braces. It's long-lasting, wear-resistant, and fully safe for enamel.",
   },
   {
     q: "Does the application hurt?",

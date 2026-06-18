@@ -85,7 +85,7 @@ const crystals: Crystal[] = [
     type: "Swarovski",
     colors: ["Clear"],
     category: "Shaped",
-    image: "/fang.webp",
+    image: "/fang.png",
     description:
       "Two raindrop crystals precision-shaved and placed to create a bold fang effect. Catches light beautifully, edgy and statement-making.",
     features: [
@@ -404,7 +404,7 @@ export default function InStock() {
 
         <div className="text-center mt-12 flex flex-col items-center gap-4">
           <a
-            href="#book"
+            href="/book"
             className="rounded-full px-8 py-3.5 font-body font-medium text-sm tracking-wide transition-all duration-200 hover:scale-105"
             style={{
               background: "rgba(196,181,232,0.08)",
@@ -427,14 +427,15 @@ export default function InStock() {
             </a>{" "}
             to confirm availability or request a gem not listed.
           </p>
-          <a
-            href="#suggest"
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("open-gem-suggestion"))}
             className="font-body text-xs tracking-widest uppercase transition-opacity hover:opacity-70 flex items-center gap-1.5"
             style={{ color: "rgba(196,181,232,0.5)" }}
           >
             <span aria-hidden="true">✦</span>
             Don&apos;t see what you want? Suggest a gem
-          </a>
+          </button>
         </div>
       </div>
     </section>

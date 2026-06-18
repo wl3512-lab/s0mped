@@ -45,7 +45,7 @@ export default function MobileBookingPill() {
 
   return (
     <a
-      href="#book"
+      href="/book"
       aria-label="Book your gem appointment"
       className="md:hidden fixed bottom-6 left-1/2 z-40"
       style={{

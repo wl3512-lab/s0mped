@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 /* Brand color tokens */
 :root {
   --bg-light: #F2EEFF;
@@ -529,4 +531,39 @@ input:focus, textarea:focus, select:focus {
 select option {
   background: #2a1a4a;
   color: #F2EEFF;
+}
+
+/* ─── Book Now CTA (StarBorder) — keep the brand lavender pill ─── */
+
+.star-border-container.book-cta {
+  border-radius: 9999px;
+}
+
+.book-cta .inner-content {
+  background: linear-gradient(135deg, #C4B5E8 0%, #9B8FD4 100%);
+  color: #1A0F2E;
+  border: none;
+  border-radius: 9999px;
+  padding: 16px 36px;
+}
+
+@theme inline {
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
 }

@@ -163,11 +163,11 @@ export default function Booking() {
                     }}
                   >
                     <option value="" disabled>Select a service</option>
-                    <option value="single">Single Crystal</option>
+                    <option value="single">Single Gem</option>
                     <option value="star-circle">Star &amp; Circle</option>
                     <option value="crystal-line">Crystal Line</option>
                     <option value="mock-braces">Mock Braces</option>
-                    <option value="gold-charm">Gold Charm</option>
+                    <option value="gold-charm">18k Gold / White Gold</option>
                     <option value="freestyle">Freestyle (5–6 crystals · $80)</option>
                     <option value="custom">Custom / Not Sure</option>
                   </select>
