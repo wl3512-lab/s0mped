@@ -177,7 +177,24 @@ export default function Reviews() {
       </div>
 
       {/* Marquee rows */}
-      <div className="relative mt-14 flex flex-col gap-4">
+      {/* Mobile: swipeable carousel (manual scroll, snap) */}
+      <div className="md:hidden mt-12">
+        <div
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 pb-4 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {reviews.map((review, i) => (
+            <div key={`m-${i}`} className="snap-center shrink-0">
+              <ReviewCard {...review} />
+            </div>
+          ))}
+        </div>
+        <p className="mt-2 text-center font-body text-[11px] tracking-widest uppercase" style={{ color: "rgba(196,181,232,0.45)" }}>
+          ← swipe →
+        </p>
+      </div>
+
+      {/* Desktop: auto-scrolling marquee (pause on hover) */}
+      <div className="relative mt-14 hidden flex-col gap-4 md:flex">
         <Marquee pauseOnHover className="[--duration:32s]">
           {firstRow.map((review, i) => (
             <ReviewCard key={`a-${i}`} {...review} />
