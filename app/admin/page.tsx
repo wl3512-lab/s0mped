@@ -23,19 +23,31 @@ export default function AdminPage() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(false);
   const [busyId, setBusyId] = useState<string | null>(null);
+  const [loadError, setLoadError] = useState("");
 
   const load = useCallback(async () => {
     setLoading(true);
-    const res = await fetch("/api/admin/reviews", { cache: "no-store" });
-    setLoading(false);
-    if (res.status === 401) {
-      setAuthed(false);
-      return;
-    }
-    if (res.ok) {
+    setLoadError("");
+    try {
+      const res = await fetch("/api/admin/reviews", { cache: "no-store" });
+      if (res.status === 401) {
+        setAuthed(false);
+        return;
+      }
+      if (!res.ok) {
+        // Authed fine, but the server can't talk to Supabase (paused project,
+        // missing env var, …). Surface it — never sit on "Loading…".
+        const json = await res.json().catch(() => ({}));
+        setLoadError(json.error ?? `Server error ${res.status}`);
+        return;
+      }
       const json = await res.json();
       setReviews(json.reviews ?? []);
       setAuthed(true);
+    } catch (err) {
+      setLoadError(err instanceof Error ? err.message : "Network error");
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -54,8 +66,11 @@ export default function AdminPage() {
     if (res.ok) {
       setPassword("");
       await load();
-    } else {
+    } else if (res.status === 401) {
       setLoginError("Incorrect password");
+    } else {
+      const json = await res.json().catch(() => ({}));
+      setLoginError(json.error ?? `Server error ${res.status}`);
     }
   }
 
@@ -99,7 +114,11 @@ export default function AdminPage() {
   if (authed === null) {
     return (
       <main style={pageStyle}>
-        <p style={{ textAlign: "center", opacity: 0.6 }}>Loading…</p>
+        {loadError ? (
+          <ErrorBanner msg={loadError} onRetry={load} retrying={loading} />
+        ) : (
+          <p style={{ textAlign: "center", opacity: 0.6 }}>Loading…</p>
+        )}
       </main>
     );
   }
@@ -113,6 +132,7 @@ export default function AdminPage() {
           <p style={{ opacity: 0.6, fontSize: 14, marginBottom: 20 }}>
             Enter the admin password to moderate reviews.
           </p>
+          {loadError ? <ErrorBanner msg={loadError} onRetry={load} retrying={loading} /> : null}
           <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             <input
               type="password"
@@ -192,6 +212,8 @@ export default function AdminPage() {
           {loading ? "Refreshing…" : "Refresh"}
         </button>
 
+        {loadError ? <ErrorBanner msg={loadError} onRetry={load} retrying={loading} /> : null}
+
         <Section title={`Pending (${pending.length})`}>
           {pending.length === 0 ? (
             <p style={{ opacity: 0.5, fontSize: 14 }}>Nothing waiting. 🎉</p>
@@ -213,6 +235,53 @@ export default function AdminPage() {
         </Section>
       </div>
     </main>
+  );
+}
+
+function ErrorBanner({
+  msg,
+  onRetry,
+  retrying,
+}: {
+  msg: string;
+  onRetry: () => void;
+  retrying: boolean;
+}) {
+  const hint = /fetch failed|Supabase not configured|Failed to fetch|Network/i.test(msg)
+    ? "The server can't reach Supabase. Check that the project isn't paused at supabase.com/dashboard, and that NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SECRET_KEY are set in Vercel."
+    : null;
+
+  return (
+    <div
+      role="alert"
+      style={{
+        borderRadius: 16,
+        padding: 16,
+        marginBottom: 20,
+        background: "rgba(232,160,176,0.08)",
+        border: "1px solid rgba(232,160,176,0.35)",
+      }}
+    >
+      <p style={{ fontSize: 14, fontWeight: 600, color: "#E8A0B0" }}>Couldn’t load reviews</p>
+      <p style={{ marginTop: 6, fontSize: 13, opacity: 0.75, wordBreak: "break-word" }}>{msg}</p>
+      {hint ? <p style={{ marginTop: 8, fontSize: 12, opacity: 0.6, lineHeight: 1.5 }}>{hint}</p> : null}
+      <button
+        onClick={onRetry}
+        disabled={retrying}
+        style={{
+          marginTop: 12,
+          fontSize: 13,
+          padding: "6px 14px",
+          borderRadius: 999,
+          background: "rgba(196,181,232,0.1)",
+          border: "1px solid rgba(196,181,232,0.25)",
+          color: "#C4B5E8",
+          opacity: retrying ? 0.5 : 1,
+        }}
+      >
+        {retrying ? "Retrying…" : "Retry"}
+      </button>
+    </div>
   );
 }
 
